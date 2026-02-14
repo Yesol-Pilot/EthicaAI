@@ -126,6 +126,11 @@ ANALYSES = {
         "module": "simulation.jax.analysis.hybrid_agent_experiment",
         "phase": "O",
     },
+    "O8": {
+        "name": "Human-AI 파일럿 분석 (시뮬레이션)",
+        "module": "simulation.jax.analysis.otree_analysis",
+        "phase": "O",
+    },
 }
 
 

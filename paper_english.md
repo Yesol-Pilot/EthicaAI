@@ -427,6 +427,16 @@ Building on Section 5.7's LLM-λ comparison, we implemented and tested a hybrid 
 - **Cost-performance trade-off**: Hybrid-50 achieves 84% of Pure-λ performance at 12% of Pure-LLM's inference cost (6ms vs 50ms)
 - **Routing pattern**: LLM is exclusively called in the ambiguity zone ($R \in [0.2, 0.7]$), predominantly for "inequality" and "crisis" scenarios
 - **Budget sensitivity**: Increasing LLM budget from 20→100 shows diminishing returns, suggesting 50 calls/episode is near-optimal
+
+### 5.11 Human-AI Interaction Simulation (Stage 6)
+
+We designed an oTree-based experimental platform for PGG with AI partners and conducted simulated pilot studies with 5 human behavioral types × 3 AI conditions (Fig. 47-48).
+
+- **AI influence on humans**: Mean human contribution shifts from 28.3 (with selfish AI) to 47.5 (with meta-ranking AI), a 68% increase
+- **Adaptation patterns**: Conditional cooperators gradually increase contributions when paired with prosocial/meta-ranking AI (slope = +0.5/round)
+- **Strategy mimicry**: Tit-for-tat humans closely track AI contribution levels (r = 0.82 correlation)
+- **Free-rider resilience**: Even free-riders contribute 10+ points with meta-ranking AI, compared to near-zero with selfish AI
+- **Meta-ranking premium**: Meta-ranking AI achieves total payoff 2,996 vs prosocial 2,975 (+0.7%), suggesting dynamic λ provides marginal improvement even in simple PGG
  
 ---
  
@@ -438,6 +448,7 @@ Building on Section 5.7's LLM-λ comparison, we implemented and tested a hybrid 
 2. **Agent Scale**: The 20-agent experiment is small-scale for observing macroscopic emergence. While Stage 3 included partial 100-agent validation, scaling to 1,000+ agents remains a future goal.
  
 ### 6.2 Methodological Limitations
+
  
 1. **Philosophical Alignment**: Since our model's $\lambda_t$ drops to zero under resource depletion, it more closely represents "Situational Altruism" rather than Sen's "unconditional commitment." A rule-based obligatory commitment module is needed.
 2. **Statistical Methodology**: While HAC Robust SE ensured robustness, future work should introduce Linear Mixed-Effects Models (LMM) to account for agent-specific random effects.
