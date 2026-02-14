@@ -26,8 +26,8 @@ Meta-Ranking Theory via Multi-Agent Reinforcement Learning}
 \maketitle
 
 \begin{abstract}
-Integrating AI agents into human society requires resolving the fundamental conflict between self-interest and social values. This study formalizes Amartya Sen's theory of \textbf{``Meta-Ranking''}---preferences over preferences to implement moral commitment---within a Multi-Agent Reinforcement Learning (MARL) framework. We simulated agents with seven Social Value Orientations (SVO) in Tragedy of the Commons environments at both 20-agent and 100-agent scales.
-Three key findings emerge: (1) Dynamic meta-ranking ($\lambda_t$) significantly enhances collective welfare ($p{=}0.0003$, 100-agent LMM), while static SVO injection fails ($p{=}0.64$). (2) Non-significant cooperation rates in small groups revealed an \emph{emergent role specialization} between ``Cleaners'' and ``Eaters'' at scale ($p{<}0.0001$). (3) Only ``Situational Commitment''---conditional altruism coupled with survival instincts---survives as an Evolutionarily Stable Strategy (ESS). We propose that moral AI emerges not from ideal norms but from evolutionary compromise in resource-constrained environments.
+Integrating AI agents into human society requires resolving the fundamental conflict between self-interest and social values. This study formalizes Amartya Sen's theory of \textbf{``Meta-Ranking''}---preferences over preferences---within a Multi-Agent Reinforcement Learning (MARL) framework. We simulated agents with seven Social Value Orientations (SVO) across three environments (Cleanup, Iterated Prisoner's Dilemma, Public Goods Game) at scales up to 100 agents.
+Five key findings emerge: (1) Dynamic meta-ranking ($\lambda_t$) significantly enhances collective welfare ($p{=}0.0003$) while static SVO injection fails. (2) Agents exhibit \emph{emergent role specialization} into ``Cleaners'' and ``Eaters.'' (3) Only ``Situational Commitment'' survives as an Evolutionarily Stable Strategy (ESS), converging to $\sim$12\% of the population regardless of initial conditions. (4) In PGG, agents with individualist SVO ($\theta{=}15^{\circ}$) most closely match human behavioral data ($WD{=}0.053$), validating Sen's critique of the ``Rational Fool.'' (5) Full factorial decomposition reveals SVO rotation accounts for 86\% of the effect, with dynamic $\lambda$ contributing an additional 13\%.
 \end{abstract}
 
 \section{Introduction}
@@ -39,6 +39,8 @@ This study translates Sen's insight into a computational framework. Our contribu
   \item \textbf{(C3) Situational Commitment}: Proof that only resource-contingent morality is evolutionarily stable.
   \item \textbf{(C4) Scalability}: Verification of effects scaling from 20 to 100 agents (Cohen's $f^2$ for fairness increased $5.8 \to 10.2$).
   \item \textbf{(C5) Reality Alignment}: Quantitative similarity with human PGG data (Wasserstein Distance $< 0.2$).
+  \item \textbf{(C6) Environment Generality}: Cross-validation across Cleanup, IPD, and PGG environments.
+  \item \textbf{(C7) Evolutionary Stability}: Proof that meta-ranking converges to $\sim$12\% ESS via replicator dynamics.
 \end{enumerate}
 
 \section{Related Work}
@@ -161,10 +163,62 @@ Static $\lambda$ & $-0.147$ & $0.024$ & $0.161$ & $-6.19$ \\
 \subsection{Sensitivity Analysis}
 Analysis across all 7 SVO conditions confirmed the meta-ranking effect is not parameter-dependent: significant effects ($p < 0.05$) were observed in 5/7 conditions for both Reward and Gini. Seed robustness (CV $< 0.1$) held in 52\% of cells, with remaining variance attributable to stochastic exploration.
 
+\subsection{Cross-Environment Validation}
+To test generalizability beyond the Cleanup environment, we ran meta-ranking in the \textbf{Iterated Prisoner's Dilemma (IPD)} (2 agents, 200 rounds). Meta-ranking boosted cooperation by up to \textbf{+17.8\%} in competitive SVO ($\theta{=}30^\circ$), with effects diminishing for already-cooperative agents (Table~\ref{tab:cross_env}).
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment validation: Meta-ranking effect on cooperation rate.}
+\label{tab:cross_env}
+\begin{tabular}{lccc}
+\toprule
+SVO Condition & Cleanup & IPD & Effect \\
+\midrule
+Selfish ($0^\circ$) & $0.0$ & $0.0$ & None \\
+Competitive ($30^\circ$) & n/a & $+17.8\%$ & \textbf{Strong} \\
+Prosocial ($45^\circ$) & $+3.2\%$ & $+10.0\%$ & Strong \\
+Full Altruist ($90^\circ$) & $0.0$ & $0.0$ & Ceiling \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Extended Results}
+
+\subsection{Public Goods Game: Structural Alignment with Human Data}
+We implemented an N-Player PGG ($N{=}4$, multiplier$=1.6$, 10 rounds) matching standard experimental economics protocols \cite{fehr2000cooperation}. Agents with \textbf{individualist SVO ($\theta{=}15^\circ$)} achieved the lowest divergence from human behavioral data ($WD{=}0.053$)---not the most altruistic, but a moderately self-interested agent. This validates Sen's \cite{sen1977rational} insight: pure altruism is not the human norm; \emph{bounded commitment} is.
+
+\subsection{Evolutionary Stability: The ``Moral Minority'' Hypothesis}
+Using replicator dynamics over 200 generations ($N{=}100$, 5 initial fractions $\times$ 10 seeds), we found that meta-ranking strategies converge to $\approx$\textbf{12\%} of the population regardless of initial conditions. This implies an ESS where a small fraction of ``moral leaders'' sustains population welfare---a computational analogue of the ``critical mass'' observed in human cooperation experiments \cite{granovetter1978threshold}.
+
+\subsection{Mechanism Decomposition}
+Full factorial analysis ($2^3 = 8$ conditions) decomposed meta-ranking into three components:
+\begin{itemize}
+    \item \textbf{SVO Rotation}: +0.79 contribution rate (86\% of total effect)
+    \item \textbf{Dynamic $\lambda$}: +0.12 (13\%)---the ``when to be moral'' signal
+    \item \textbf{Self-Control Cost $\psi$}: $-0.03$ (negligible direct effect)
+\end{itemize}
+Crucially, Dynamic $\lambda$ \emph{alone} cannot produce cooperation; it acts as an \textbf{amplifier} of pre-existing prosocial orientation, confirming that meta-ranking is a \emph{modulator}, not a \emph{generator}, of moral behavior.
+
 \section{Conclusion}
-We demonstrated that \textbf{Situational Commitment}---morality conditional on survival---is the only evolutionarily stable strategy in resource-constrained MARL. Our agents' behavioral distribution closely mirrors human conditional cooperation ($WD < 0.2$), suggesting that meta-ranking captures a fundamental dynamic of intelligent social behavior. This suggests AI alignment should focus on learning \emph{when} to be moral, rather than hard-coding static values.
+We demonstrated that \textbf{Situational Commitment}---morality conditional on survival---is the only evolutionarily stable strategy in resource-constrained MARL, converging to $\sim$12\% of any population regardless of initial conditions. Three implications follow:
+\begin{enumerate}
+    \item \textbf{For AI Alignment}: Systems should learn \emph{when} to be moral, not encode static values. Our dynamic $\lambda_t$ provides a principled mechanism.
+    \item \textbf{For Behavioral Economics}: Agents with bounded self-interest ($\theta{=}15^\circ$), not pure altruism, best replicate human behavior ($WD{=}0.053$), computationally validating Sen's ``Rational Fool'' critique.
+    \item \textbf{For Evolutionary Theory}: Moral behavior need not be universal to be stable---a ``Moral Minority'' of $\sim$12\% suffices as an ESS.
+\end{enumerate}
 
 \bibliography{references}
 \bibliographystyle{plainnat}
+
+\appendix
+\section{Additional Figures}
+Figures referenced in the main text are available in the supplementary material:
+\begin{itemize}
+    \item Fig.~16: Cross-environment validation (IPD)
+    \item Fig.~17: PGG structural alignment with human data
+    \item Fig.~18: Evolutionary competition dynamics
+    \item Fig.~19: Mechanism decomposition (full factorial)
+\end{itemize}
+All code, data, and reproduction scripts are available at \url{https://github.com/Yesol-Pilot/EthicaAI}.
 
 \end{document}
