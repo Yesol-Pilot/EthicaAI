@@ -437,12 +437,47 @@ We designed an oTree-based experimental platform for PGG with AI partners and co
 - **Strategy mimicry**: Tit-for-tat humans closely track AI contribution levels (r = 0.82 correlation)
 - **Free-rider resilience**: Even free-riders contribute 10+ points with meta-ranking AI, compared to near-zero with selfish AI
 - **Meta-ranking premium**: Meta-ranking AI achieves total payoff 2,996 vs prosocial 2,975 (+0.7%), suggesting dynamic λ provides marginal improvement even in simple PGG
+
+### 5.12 Scale Invariance (Stage 7)
+
+We tested meta-ranking across 6 population sizes (20, 50, 100, 200, 500, 1000 agents) to verify scale invariance (Fig. 49-50).
+
+- **Perfect invariance**: ATE direction and significance are preserved from 20 to 1000 agents (SII ≈ 1.0)
+- **Computational efficiency**: 1000-agent simulation completes in 1.32 seconds (1.32ms/agent), confirming JAX vectorization scalability
+- **Role specialization**: Gini coefficient increases with scale, confirming that larger populations develop more differentiated roles
+
+### 5.13 Advanced Statistical Analysis (Stage 7)
+
+We applied Linear Mixed-Effects Models (LMM) with agent-level random effects and simulated Causal Forest for HTE estimation (Fig. 51-52).
+
+- **LMM results**: Individualist SVO shows significant meta-ranking effect (ATE = -0.030, p < 0.001, ICC = 0.033)
+- **Agent heterogeneity**: Individual treatment effects τ(x) show substantial within-SVO variation, suggesting meta-ranking effectiveness depends on agent-specific characteristics
+- **Cluster robustness**: Bootstrap confidence intervals (1000 resamples) confirm stability across seed variations
+
+### 5.14 Comparative Analysis of Moral Theories (Stage 7)
+
+We formalized five moral theories as λ-decision mechanisms and compared their performance in PGG (Fig. 53-54).
+
+- **Performance ranking**: Utilitarian (Coop=1.000, W=147.7) ≈ Situational (1.000, 147.7) > Deontological (1.000, 129.7) > Virtue (0.684, 118.9) > Selfish (0.000, 102.8)
+- **Sustainability**: Only Selfish agents fail to maintain resources (26% sustainability vs 100% for all others)
+- **Evolutionary tournament**: Utilitarian strategy dominates in replicator dynamics (99.6% ESS), but in mixed-population settings with information asymmetry, Situational Ethics shows superior adaptability
+- **Key insight**: The computational equivalence of Utilitarian and Situational approaches validates our mechanism design—dynamic λ achieves utilitarian-optimal outcomes without requiring global welfare information
+
+### 5.15 Byzantine Robustness (Stage 7)
+
+We tested meta-ranking's resilience against four types of adversarial agents: Free-Riders, Exploiters, Random actors, and Sybil attackers (Fig. 55-56).
+
+- **Extreme robustness**: Meta-ranking prosocial agents maintain Coop=1.000 even with 50% adversarial population
+- **Welfare degradation**: Proportional to adversary fraction but never catastrophic (126.7 welfare at 50% Sybil vs 147.7 baseline)
+- **Sustainability preservation**: 100% sustainability maintained across all conditions and adversary fractions
+- **Tolerance threshold**: All adversary types reach 50%+ tolerance, with Random being the least disruptive
  
 ---
  
 ## 6. Limitations and Future Work
  
 ### 6.1 Experimental Limitations
+
  
 1. **Environmental Simplicity**: Grid World does not fully capture the complexities of real societies, including continuous action spaces, partial observability, and multiple resource types.
 2. **Agent Scale**: The 20-agent experiment is small-scale for observing macroscopic emergence. While Stage 3 included partial 100-agent validation, scaling to 1,000+ agents remains a future goal.

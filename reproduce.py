@@ -131,6 +131,26 @@ ANALYSES = {
         "module": "simulation.jax.analysis.otree_analysis",
         "phase": "O",
     },
+    "P1": {
+        "name": "1000-에이전트 스케일 불변성",
+        "module": "simulation.jax.analysis.scale_1000",
+        "phase": "P",
+    },
+    "P2": {
+        "name": "LMM + Causal Forest 통계",
+        "module": "simulation.jax.analysis.lmm_causal_forest",
+        "phase": "P",
+    },
+    "P6": {
+        "name": "적대적 에이전트 강건성",
+        "module": "simulation.jax.analysis.adversarial_robustness",
+        "phase": "P",
+    },
+    "Q3": {
+        "name": "다중 도덕 이론 비교",
+        "module": "simulation.jax.analysis.moral_theories",
+        "phase": "Q",
+    },
 }
 
 
@@ -166,7 +186,7 @@ def run_analysis(key, info, output_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="EthicaAI 재현성 스크립트")
-    parser.add_argument("--phase", choices=["G", "H", "M", "N", "O", "all"], default="all",
+    parser.add_argument("--phase", choices=["G", "H", "M", "N", "O", "P", "Q", "all"], default="all",
                        help="실행할 Phase (기본: all)")
     parser.add_argument("--quick", action="store_true",
                        help="빠른 데모 모드 (축소 실행)")

@@ -1,0 +1,27 @@
+{
+  "lmm": {
+    "selfish": {
+      "ate": 0.0,
+      "se": 0.0,
+      "t_stat": 0.0,
+      "p_value": 1.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ],
+      "icc_seed": 0.0,
+      "seed_ates": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "agent_ate_mean": 0.0,
+      "agent_ate_std": 0.0,
+      "significant": 
