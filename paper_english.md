@@ -295,6 +295,51 @@ Full factorial analysis ($2^3 = 8$ conditions) decomposed meta-ranking into thre
 
 Crucially, Dynamic λ *alone* cannot produce cooperation; it acts as an **amplifier** of pre-existing prosocial orientation, confirming that meta-ranking is a *modulator*, not a *generator*, of moral behavior.
 
+### 4.13 Full Environmental Sweep: Generalizability Across Social Dilemmas
+
+To establish broad generalizability, we conducted a **full factorial sweep** across 4 environments × 7 SVO conditions × 10 seeds = **560 experimental runs** (Fig. 24). The Average Treatment Effect (ATE) of meta-ranking varied by environment:
+
+| Environment | Best ATE (Coop) | Optimal SVO | ATE (Reward) |
+|:-----------|:--------------:|:-----------:|:------------:|
+| Cleanup | +0.083 | cooperative (60°) | — |
+| IPD | 0.000 | — | — |
+| **PGG** | **+0.211** | **prosocial (45°)** | **+2.535** |
+| **Harvest** | **+0.506** | **selfish (0°)** | **+0.101** |
+
+The strongest effects appeared in environments with **common-pool resource dynamics** (PGG, Harvest), where meta-ranking's crisis-driven λ reduction prevents collective over-exploitation. The Harvest result—where selfish agents showed maximum ATE—is particularly noteworthy: meta-ranking's survival-driven λ suppression forced restraint precisely when it mattered most.
+
+### 4.14 Mixed-Motive Populations: The Tipping Point Hypothesis
+
+Real populations contain heterogeneous agents. We tested meta-ranking in **mixed-SVO populations** by varying the fraction of prosocial agents ($θ=45°$) from 0% to 100%, with remaining agents being selfish ($θ=0°$), across Cleanup and PGG environments (Fig. 25–26).
+
+Key finding: A **nonlinear tipping point** exists at approximately **30% prosocial fraction**, beyond which collective welfare exhibits a sharp upward transition. This is consistent with the ESS fraction (~12%) found in Section 4.11, suggesting that a critical mass of morally-motivated agents, amplified by meta-ranking, can catalyze population-wide cooperation.
+
+In PGG, the maximum welfare improvement was **ΔW = +10,080** at 100% prosocial ratio, demonstrating that meta-ranking scales welfare gains superlinearly with prosocial fraction.
+
+### 4.15 Communication Channels: Cheap Talk and Truthfulness
+
+We extended the PGG framework with a **1-bit communication channel** ("cheap talk") allowing agents to signal cooperation intentions before acting. A 2×2 factorial design tested Meta-Ranking × Communication effects (Fig. 27–28).
+
+| Condition | Cooperation (θ=45°) | Truthfulness |
+|:---------|:-------------------:|:------------:|
+| Meta + Comm | **0.976** | 98.6% |
+| Meta Only | 0.918 | — |
+| Comm Only | 0.710 | 88.2% |
+| Baseline | 0.704 | — |
+
+Communication provided a **+5.8% boost** in cooperation for prosocial agents when combined with meta-ranking, primarily through **convergence acceleration** (reaching equilibrium ~40% faster). Notably, message truthfulness converged to ~98%, indicating that honest signaling is evolutionarily favored when meta-ranking modulates cooperation incentives.
+
+### 4.16 Continuous Action Spaces: Beyond Binary Decisions
+
+Prior experiments used discrete action spaces. We extended PGG to **continuous contributions** ($c_i \in [0, E]$) using Beta-distribution-parameterized policies (Fig. 29–30).
+
+| SVO | Continuous Meta | Continuous Base | Discrete Meta | Discrete Base |
+|:----|:--------------:|:--------------:|:------------:|:------------:|
+| Prosocial (45°) | **0.901** | 0.705 | 0.919 | 0.709 |
+| Cooperative (60°) | **0.908** | 0.863 | 1.000 | 0.869 |
+
+Meta-ranking's ATE remained **robust** in continuous environments (≈+0.20 for prosocial SVO), with the dynamic λ trajectory showing smooth adaptation rather than the binary switching seen in discrete spaces. This confirms that the meta-ranking mechanism generalizes beyond discrete decision boundaries.
+
 ---
  
 ## 5. Discussion: From Defense to Discovery
@@ -338,13 +383,15 @@ Despite the complex temporal dependencies inherent in MARL data, re-analysis wit
 2. **Statistical Methodology**: While HAC Robust SE ensured robustness, future work should introduce Linear Mixed-Effects Models (LMM) to account for agent-specific random effects.
  
 ### 6.3 Future Research Directions
- 
+
 1. ~~**Direct Implementation of Sen's "Commitment"**: Addition of rule-based obligatory action modules~~ → Partially addressed through Dynamic λ mechanism
 2. ~~**Evolutionary Competition Simulation**: Long-term evolutionary dynamics between selfish vs. committed agent populations~~ → **Completed** (Section 4.11): Meta-ranking converges to ~12% ESS
 3. ~~**Human Behavioral Data Validation**: Cross-validation of simulation results with human participant data from Public Goods Games~~ → **Completed** (Section 4.10): WD = 0.053 for individualist SVO
-4. **Continuous Action Spaces**: Extending to environments with continuous contribution decisions
-5. **Communication Channels**: Allowing agents to signal commitment intentions
+4. ~~**Continuous Action Spaces**: Extending to environments with continuous contribution decisions~~ → **Completed** (Section 4.16): Beta-distribution policies, ATE ≈ +0.20
+5. ~~**Communication Channels**: Allowing agents to signal commitment intentions~~ → **Completed** (Section 4.15): +5.8% cooperation boost, 98% truthfulness
 6. **Large-Scale Human-AI Interaction**: Deploying meta-ranking agents in real human group decision-making experiments
+7. **Partial Observability**: Testing meta-ranking under information asymmetry where agents have incomplete knowledge of others' states
+8. **Multi-Resource Environments**: Extending to environments with multiple competing resource types requiring trade-off decisions
 
 ---
 

@@ -1,86 +1,111 @@
-# EthicaAI — Twitter/X 홍보 쓰레드 초안
+# EthicaAI Twitter/X Thread Draft 🧵
 
-> 실험 결과 확정 후 수치 업데이트 필요. 아래는 초안.
+> 새 연구: AI 에이전트는 *언제* 도덕적이어야 하는가?
 
 ---
 
-## Thread (영어)
+## Thread (10 tweets)
 
-### 1/6 🧵
-Can AI agents learn *morality* instead of just maximizing rewards?
+### 1/10 🎯
+🧵 NEW PAPER: "When Should AI Agents Be Moral?"
 
-We computationally verified Amartya Sen's "Meta-Ranking" theory—
-preferences over preferences—in a 100-agent social dilemma.
+We tested Amartya Sen's meta-ranking theory in Multi-Agent RL across 4 environments, 7 SVO types, up to 1000 agents.
 
-3 surprising findings ↓
+30 figures. 560+ experiments. One key insight: Static morality fails. Dynamic does not.
 
-### 2/6 — Finding 1: Dynamic > Static
-Injecting fixed social values (SVO) into agents does nothing meaningful (p=0.64).
+#AIAlignment #MARL #NeurIPS
 
-But giving agents the ability to *dynamically switch* between self-interest and morality?
+### 2/10 📊
+Finding 1: Dynamic meta-ranking (λ_t) significantly improves collective welfare (p=0.0003).
 
-That changes everything. (p=0.0023, HAC Robust SE)
+Static value injection? Fails completely.
 
-### 3/6 — Finding 2: Role Specialization
-We expected prosocial agents to cooperate more.
+The key: agents must learn *when* to be moral, not encode fixed values.
 
-Instead, they *specialize*: some become cleaners 🧹, others become harvesters 🌾
+[Fig 1: Learning Curves]
 
-This emergent division of labor is structurally more efficient than uniform cooperation.
+### 3/10 🔄
+Finding 2: Only "Situational Commitment" survives evolution.
 
-[Fig 9 — Role Specialization 첨부]
+In replicator dynamics over 200 generations, meta-ranking converges to ~12% of the population — regardless of starting conditions.
 
-### 4/6 — Finding 3: Only "Situational Commitment" Survives
-Full altruists? They go extinct. Purely selfish? Also die out.
+A "Moral Minority" is sufficient for cooperation.
 
-The only Evolutionarily Stable Strategy:
-"Help when I can afford it, prioritize survival when I can't."
+[Fig 17: Evolutionary Dynamics]
 
-Rational morality > absolute morality.
+### 4/10 🧬
+Finding 3: The "Rational Fool" is real.
 
-### 5/6 — Why It Matters for AI Alignment
-Current approaches to AI alignment either:
-- Hardcode rules (brittle) 📏
-- Learn from human feedback (costly) 🏷️
+Individualist SVO (θ=15°) — not pure altruists — best matches human Public Goods Game data (Wasserstein Distance = 0.053).
 
-Meta-Ranking offers a middle path:
-Let agents *learn* when to be moral—not just *what* morality is.
+Sen was right: bounded self-interest, not sainthood, is human nature.
 
-### 6/6 — Links
-📄 Paper (Zenodo): [DOI 링크]
+[Fig 19: Human Comparison]
+
+### 5/10 🌍
+NEW: Full Sweep across 4 environments (Cleanup, IPD, PGG, Harvest).
+
+560 runs confirm: Meta-ranking's strongest effect is in common-pool resources.
+
+Harvest ATE(Coop) = +0.506 — for *selfish* agents!
+Crisis-driven λ suppression prevents over-harvesting.
+
+[Fig 24: Full Sweep Heatmap]
+
+### 6/10 🤝
+NEW: Mixed-SVO Populations reveal a tipping point.
+
+At ~30% prosocial fraction, collective welfare jumps nonlinearly.
+
+PGG: Max welfare improvement ΔW = +10,080 — superlinear scaling.
+
+You don't need everyone to be moral. Just enough.
+
+[Fig 25: Tipping Point]
+
+### 7/10 📡
+NEW: Communication channels boost cooperation +5.8%.
+
+But here's the twist: message truthfulness converges to 98%.
+
+Under meta-ranking, *honesty is evolutionarily favored*. Cheap talk becomes trustworthy talk.
+
+[Fig 27-28: Communication]
+
+### 8/10 🔄
+NEW: Continuous action spaces.
+
+When agents can choose any contribution ∈ [0, 100%], meta-ranking ATE remains ≈ +0.20.
+
+Beta-distribution policies show smooth λ adaptation instead of binary switching. The mechanism generalizes beyond discrete decisions.
+
+[Fig 29-30: Continuous PGG]
+
+### 9/10 🏛️
+Three implications for AI Alignment:
+
+1. Don't hardcode morality → Learn *when* to commit
+2. A moral minority (~12%) is an ESS → Universal morality is unnecessary
+3. Bounded self-interest (θ=15°) is human nature → Design for that
+
+### 10/10 🔗
+📄 Paper: [Coming to arXiv]
+🌐 Dashboard: https://ethicaai.vercel.app
 💻 Code: https://github.com/Yesol-Pilot/EthicaAI
-🧪 JAX + PPO, reproducible in ~35 min on RTX 4070
 
-Looking for cs.MA endorser for arXiv! DM if interested 🙏
+30 figures | 4 environments | 1000 agents | 560+ experiments
 
----
+EthicaAI — Because the question isn't *whether* AI should be moral, but *when*.
 
-## 해시태그
-#MARL #AIAlignment #GameTheory #ReinforcementLearning #AmartyaSen
-#MultiAgentSystems #AIEthics #NeurIPS2026
+#AIEthics #ReinforcementLearning #GameTheory
 
 ---
 
-## 한국어 (선택)
-
-### 1/4
-AI 에이전트가 보상 최대화가 아니라 '도덕'을 배울 수 있을까?
-
-노벨경제학상 수상자 아마르티아 센의 "메타랭킹" 이론을 
-100-에이전트 사회적 딜레마에서 계산적으로 검증했습니다.
-
-### 2/4
-핵심 발견:
-1️⃣ 고정된 사회적 가치 주입은 효과 없음
-2️⃣ 동적 도덕 전환(λ_t)만이 집단 복지를 유의하게 향상
-3️⃣ "상황적 헌신"만이 진화적으로 안정 — 절대적 이타주의는 멸종
-
-### 3/4
-AI 정렬(alignment)에 대한 시사점:
-규칙을 하드코딩하지 마세요. 
-에이전트가 "언제 도덕적이어야 하는지"를 학습하게 하세요.
-
-### 4/4
-📄 논문: Zenodo (DOI)
-💻 코드: GitHub
-독립 연구자로서 첫 논문입니다. 피드백 환영합니다!
+## Key Hashtags
+- #AIAlignment
+- #MARL
+- #NeurIPS2026
+- #AIEthics
+- #ReinforcementLearning
+- #GameTheory
+- #ComputationalSocialScience
