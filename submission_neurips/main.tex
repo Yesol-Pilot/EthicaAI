@@ -38,9 +38,7 @@ This study translates Sen's insight into a computational framework. Our contribu
   \item \textbf{(C2) Role Specialization}: Discovery of emergent division of labor replacing uniform cooperation.
   \item \textbf{(C3) Situational Commitment}: Proof that only resource-contingent morality is evolutionarily stable.
   \item \textbf{(C4) Scalability}: Verification of effects scaling from 20 to 100 agents (Cohen's $f^2$ for fairness increased $5.8 \to 10.2$).
-\end{enumerate}
-
-  \item \textbf{(C4) Scalability}: Verification of effects scaling from 20 to 100 agents (Cohen's $f^2$ for fairness increased $5.8 \to 10.2$).
+  \item \textbf{(C5) Reality Alignment}: Quantitative similarity with human PGG data (Wasserstein Distance $< 0.2$).
 \end{enumerate}
 
 \section{Related Work}
@@ -113,8 +111,26 @@ Scaling from 20 to 100 agents revealed structural robustness. While reward patte
 \subsection{Emergent Role Specialization}
 The counter-intuitive negative effect on cooperation rate (H2) results from \textit{division of labor}. Altruistic groups maintain higher diversity in cleaning thresholds $\sigma$ (0.08 vs 0.06), implying a specialized minority of ``Cleaners'' supports the population.
 
+\subsection{Baseline Ablation: Meta-Ranking is the Key Mediator}
+Direct comparison between the Full Model and Baseline (Meta-Ranking OFF) at 100-agent scale (Fig.~\ref{fig:baseline}) confirms that meta-ranking is the causal mechanism:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\linewidth]{figures/fig11_baseline.png}
+    \caption{Baseline (gray) vs Full Model (blue) comparison across key metrics.}
+    \label{fig:baseline}
+\end{figure}
+
+\subsection{Human-AI Behavioral Alignment}
+We validated agent behaviors against human Public Goods Game (PGG) data using Wasserstein Distance (WD):
+\begin{itemize}
+    \item Cooperation Rate: $WD = 0.178$
+    \item Inequality (Gini): $WD = 0.153$
+\end{itemize}
+The low divergence ($WD < 0.2$) suggests that ``Situational Commitment'' mirrors human ``Conditional Cooperation.''
+
 \section{Conclusion}
-We demonstrated that \textbf{Situational Commitment}---morality conditional on survival---is the only evolutionarily stable strategy in resource-constrained MARL. This suggests AI alignment should focus on learning \emph{when} to be moral, rather than hard-coding static values.
+We demonstrated that \textbf{Situational Commitment}---morality conditional on survival---is the only evolutionarily stable strategy in resource-constrained MARL. Our agents' behavioral distribution closely mirrors human conditional cooperation ($WD < 0.2$), suggesting that meta-ranking captures a fundamental dynamic of intelligent social behavior. This suggests AI alignment should focus on learning \emph{when} to be moral, rather than hard-coding static values.
 
 \bibliography{references}
 \bibliographystyle{plainnat}
