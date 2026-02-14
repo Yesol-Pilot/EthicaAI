@@ -1,0 +1,22 @@
+# EthicaAI 실험 재현 환경
+
+# 핵심 프레임워크
+jax==0.9.0.1
+jaxlib==0.9.0.1
+jax-cuda12-plugin==0.9.0.1
+jax-cuda12-pjrt==0.9.0.1
+
+# RL/ML 라이브러리
+flax==0.12.4
+optax==0.2.6
+chex==0.1.91
+distrax==0.1.7
+
+# 과학 계산 및 시각화
+numpy==2.3.5
+scipy==1.17.0
+matplotlib==3.10.8
+pandas>=2.0.0
+
+# 통계 분석 (NeurIPS 2026 보강)
+statsmodels>=0.14.0

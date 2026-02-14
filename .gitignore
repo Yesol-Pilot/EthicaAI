@@ -1,0 +1,31 @@
+# 의존성
+node_modules/
+__pycache__/
+*.pyc
+.next/
+out/
+
+# 환경
+.env
+.env.local
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 시뮬레이션 로그 (대용량)
+simulation/logs/
+simulation/checkpoints/
+!simulation/logs/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 빌드
+dist/
+build/
