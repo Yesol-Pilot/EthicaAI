@@ -96,6 +96,36 @@ ANALYSES = {
         "module": "simulation.jax.analysis.llm_comparison_experiment",
         "phase": "N",
     },
+    "O_I1": {
+        "name": "Lyapunov 수렴 분석",
+        "module": "simulation.jax.analysis.lyapunov_analysis",
+        "phase": "O",
+    },
+    "O_I2": {
+        "name": "고정점 존재 증명 (시변 자원)",
+        "module": "simulation.jax.analysis.fixed_point_proof",
+        "phase": "O",
+    },
+    "O1": {
+        "name": "기후 협상 게임",
+        "module": "simulation.jax.analysis.climate_negotiation",
+        "phase": "O",
+    },
+    "O2": {
+        "name": "백신 배분 딜레마",
+        "module": "simulation.jax.analysis.vaccine_allocation",
+        "phase": "O",
+    },
+    "O3": {
+        "name": "AI 거버넌스 투표",
+        "module": "simulation.jax.analysis.ai_governance",
+        "phase": "O",
+    },
+    "O6": {
+        "name": "하이브리드 λ-LLM 비교 실험",
+        "module": "simulation.jax.analysis.hybrid_agent_experiment",
+        "phase": "O",
+    },
 }
 
 
@@ -131,7 +161,7 @@ def run_analysis(key, info, output_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="EthicaAI 재현성 스크립트")
-    parser.add_argument("--phase", choices=["G", "H", "M", "N", "all"], default="all",
+    parser.add_argument("--phase", choices=["G", "H", "M", "N", "O", "all"], default="all",
                        help="실행할 Phase (기본: all)")
     parser.add_argument("--quick", action="store_true",
                        help="빠른 데모 모드 (축소 실행)")
