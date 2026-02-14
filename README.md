@@ -1,94 +1,127 @@
-# EthicaAI: Emergent Morality via Meta-Ranking 🧠⚖️
+# EthicaAI: When Should AI Agents Be Moral? 🧠⚖️
 
-[![NeurIPS 2026 Prep](https://img.shields.io/badge/Status-NeurIPS__2026__Prep-blue?style=for-the-badge&logo=neurips)](https://neurips.cc)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
-[![JAX Powered](https://img.shields.io/badge/JAX-Accelerated-9cf?style=for-the-badge&logo=google&logoColor=white)](https://github.com/google/jax)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge)](https://github.com/psf/black)
+[![NeurIPS 2026](https://img.shields.io/badge/Target-NeurIPS_2026-blue?style=for-the-badge&logo=neurips)](https://neurips.cc)
+[![30 Figures](https://img.shields.io/badge/Figures-30-brightgreen?style=for-the-badge)](https://ethicaai.vercel.app)
+[![560+ Experiments](https://img.shields.io/badge/Experiments-560+-orange?style=for-the-badge)]()
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
+[![JAX](https://img.shields.io/badge/JAX-Accelerated-9cf?style=for-the-badge&logo=google&logoColor=white)](https://github.com/google/jax)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-> **"Reason is not just a slave of the passions, but a sovereign that can choose between them."** — *Amartya Sen*
+> **"The question isn't *whether* AI should be moral, but *when*."**
 
-**EthicaAI** is the official implementation of the paper **"Computational Verification of Amartya Sen's Optimal Rationality via Multi-Agent Reinforcement Learning with Meta-Ranking."**
-
-This project bridges **Moral Philosophy** and **Multi-Agent Reinforcement Learning (MARL)**. By formalizing Amartya Sen's theory of **Meta-Ranking** (preferences over preferences), we demonstrate how AI agents can evolve distinct moral commitments ("Situational Commitment") to solve the **Tragedy of the Commons** in large-scale social dilemmas.
+**EthicaAI** formalizes Amartya Sen's **Meta-Ranking** theory (preferences over preferences) as a dynamic mechanism in Multi-Agent Reinforcement Learning. We demonstrate that _Situational Commitment_ — morality conditional on survival — is the only Evolutionarily Stable Strategy across 4 environments, 7 SVO conditions, and up to 1,000 agents.
 
 <p align="center">
-  <img src="simulation/outputs/run_large_1771042566/figures/fig10_scale_comparison.png" width="800" alt="Scale Comparison">
-  <br>
-  <em>Fig: Meta-Ranking prevents the "Tragedy of the Commons" at scale (100 Agents). High SVO agents with meta-ranking (blue) sustain resources, while naive agents (gray) collapse.</em>
+  <a href="https://ethicaai.vercel.app"><strong>🌐 Interactive Dashboard (30 Figures)</strong></a> &nbsp;|&nbsp;
+  <a href="paper_english.md"><strong>📄 Full Paper</strong></a> &nbsp;|&nbsp;
+  <a href="submission_neurips/main.tex"><strong>📝 LaTeX</strong></a>
 </p>
 
 ---
 
-## 🌟 Key Innovations
+## 🔬 Five Key Findings
 
-### 1. 🧠 **Meta-Ranking Architecture**
-Unlike traditional methods that treat morality as a fixed parameter (Static SVO), EthicaAI implements a **dynamic $\lambda_t$ mechanism** that modulates the weight between self-interest and social welfare based on resource abundance.
-*   **Survival Mode**: Prioritize self-preservation ($w < w_{survival}$)
-*   **Abundance Mode**: Activate moral commitment ($w > w_{boost}$)
+| # | Finding | Evidence |
+|:-:|---------|---------|
+| **1** | Dynamic meta-ranking (λ_t) significantly enhances collective welfare | p=0.0003, Cohen's f²=0.40 |
+| **2** | Agents exhibit emergent **role specialization** (Cleaners vs Eaters) | σ divergence p<0.0001 |
+| **3** | Only "Situational Commitment" survives as **ESS** (~12% of population) | 200-gen replicator dynamics |
+| **4** | Individualist SVO (θ=15°) best matches **human PGG data** | WD=0.053 |
+| **5** | SVO rotation accounts for **86%** of total effect | Full factorial 2³ decomposition |
 
-### 2. 📈 **Scalability Verified (100 Agents)**
-We scaled the simulation from 20 to **100 agents**, confirming that the emergence of cooperation is robust.
-*   **Super-Linear Inequality Reduction**: The mechanism becomes *more* effective at maintaining fairness as society grows ($f^2$: 5.79 $\to$ 10.2).
-*   **Role Specialization**: Emergence of distinct "Cleaner" and "Eater" classes ($p < 0.0001$).
+---
 
-### 3. 🤝 **Human-AI Alignment**
-We validated our agents against **Human Public Goods Game (PGG)** data (Zenodo Dataset, 2025).
-*   **Wasserstein Distance < 0.2**: Our agents' "Situational Commitment" mirrors human "Conditional Cooperation."
+## 🌟 Extended Results (Phase M)
 
-### 4. 📊 **Rigorous Causal Inference**
-We moved beyond simple correlation.
-*   **HAC Robust Standard Errors**: Correcting for temporal autocorrelation.
-*   **Linear Mixed-Effects Models (LMM)**: Accounting for agent-specific random effects.
-*   **Bootstrap Confidence Intervals**: Ensuring statistical solidity.
+### Full Environmental Sweep (560 runs)
+4 environments × 7 SVO × 10 seeds — the most comprehensive test of meta-ranking to date.
+
+| Environment | Best ATE (Cooperation) | Optimal SVO | ATE (Reward) |
+|:-:|:-:|:-:|:-:|
+| Cleanup | +0.083 | Cooperative (60°) | — |
+| **PGG** | **+0.211** | **Prosocial (45°)** | **+2.535** |
+| **Harvest** | **+0.506** | **Selfish (0°)** | **+0.101** |
+
+### Mixed-SVO Populations: Tipping Point
+A **nonlinear tipping point** at ~30% prosocial fraction triggers population-wide cooperation. PGG welfare improvement: **ΔW = +10,080**.
+
+### Communication Channels
+1-bit cheap talk boosts cooperation by **+5.8%** for prosocial agents. Message truthfulness converges to **98%** — honesty is evolutionarily favored.
+
+### Continuous Action Spaces
+Beta-distribution policies in continuous PGG maintain meta-ranking's ATE ≈ **+0.20**, confirming generalization beyond discrete decisions.
 
 ---
 
 ## 🛠️ Installation
 
-Prerequisites: **Python 3.10+**, **CUDA 12+** (for GPU acceleration).
-
 ```bash
-# 1. Clone the repository
+# Clone & setup
 git clone https://github.com/Yesol-Pilot/EthicaAI.git
 cd EthicaAI
 
-# 2. Create a virtual environment
 python -m venv ethica_env
 source ethica_env/bin/activate  # Windows: ethica_env\Scripts\activate
-
-# 3. Install dependencies (JAX, Flax, Statsmodels, etc.)
 pip install -r requirements.txt
+```
+
+**Requirements**: Python 3.10+, CUDA 12+ (optional, for GPU acceleration)
+
+---
+
+## 🚀 Quick Start
+
+### Reproduce All Results (One Command)
+```bash
+# All 11 analysis modules (Phase G + H + M)
+python reproduce.py
+
+# Phase M only (4 new experiments)
+python reproduce.py --phase M
+
+# Quick demo
+python reproduce.py --quick
+```
+
+### Run Individual Experiments
+```bash
+# M1: Full Sweep (4 envs × 7 SVO × 10 seeds)
+python -m simulation.jax.analysis.run_full_sweep simulation/outputs/reproduce
+
+# M2: Mixed-SVO tipping point analysis
+python -m simulation.jax.analysis.mixed_svo_experiment simulation/outputs/reproduce
+
+# M3: Communication channels (cheap talk)
+python -m simulation.jax.analysis.communication_experiment simulation/outputs/reproduce
+
+# M4: Continuous PGG (Beta-distribution policies)
+python -m simulation.jax.analysis.continuous_experiment simulation/outputs/reproduce
+```
+
+### Full Training Pipeline (100 Agents)
+```bash
+python -m simulation.jax.run_full_pipeline large_full      # Meta-Ranking ON
+python -m simulation.jax.run_full_pipeline large_baseline   # Baseline (OFF)
+```
+
+### Prepare arXiv Submission
+```bash
+python prepare_arxiv.py  # Generates ethicaai_arxiv.tar.gz
 ```
 
 ---
 
-## 🚀 Usage
+## 📊 30 Figures
 
-### 1. Run Full Experiment (100 Agents)
-Execute the full pipeline including training, evaluation, Causal ATE analysis, and figure generation.
+All figures are interactive at [ethicaai.vercel.app](https://ethicaai.vercel.app).
 
-```bash
-# Run large-scale experiment (Meta-Ranking ON)
-python -m simulation.jax.run_full_pipeline large_full
-
-# Run baseline comparison (Meta-Ranking OFF)
-python -m simulation.jax.run_full_pipeline large_baseline
-```
-
-### 2. Run Human-AI Comparison
-Verify the alignment between simulation results and human data.
-
-```bash
-python -m simulation.jax.analysis.human_ai_comparison data/human_pgg.csv simulation/outputs/latest_run/sweep.json
-```
-
-### 3. Re-generate Figures (Publication Ready)
-Generate NeurIPS-style figures (Times New Roman, 300 DPI, PDF/PNG).
-
-```bash
-python -m simulation.jax.analysis.paper_figures simulation/outputs/latest_run
-```
+| Phase | Figures | Content |
+|:-----:|:-------:|---------|
+| **Core** (A–D) | Fig 1–9 | Learning curves, cooperation rates, role specialization, Gini, causal forest |
+| **Scale** (E) | Fig 10–11 | 100-agent scale comparison, ATE analysis |
+| **Robustness** (G) | Fig 12–16 | Convergence, static/dynamic λ, sensitivity, cross-environment |
+| **Extended** (H) | Fig 17–23 | PGG, evolution, mechanism decomposition, Harvest, Melting Pot, Constitutional AI |
+| **Deep** (M) | Fig 24–30 | Full sweep heatmap, mixed-SVO tipping point, communication, continuous PGG |
 
 ---
 
@@ -97,29 +130,59 @@ python -m simulation.jax.analysis.paper_figures simulation/outputs/latest_run
 ```
 EthicaAI/
 ├── simulation/
-│   ├── jax/                # Core MAPPO Algorithm & Environment (JAX)
-│   │   ├── analysis/       # Statistical Analysis (LMM, Bootstrap, Causal)
-│   │   ├── config.py       # Experiment Hyperparameters
-│   │   └── run_full_pipeline.py # End-to-End Execution Script
-│   └── llm/                # (Experimental) Constitutional AI Prototype
-├── submission_neurips/     # LaTeX Sources for NeurIPS 2026
-├── figures/                # Generated Figures for Paper
-└── requirements.txt        # Python Dependencies
+│   └── jax/
+│       ├── analysis/              # 11 analysis modules
+│       │   ├── run_full_sweep.py         # M1: Full environmental sweep
+│       │   ├── mixed_svo_experiment.py   # M2: Mixed-SVO populations
+│       │   ├── communication_experiment.py # M3: Cheap talk
+│       │   ├── continuous_experiment.py  # M4: Continuous PGG
+│       │   ├── convergence_proof.py      # Convergence verification
+│       │   ├── sensitivity_analysis.py   # Parameter sensitivity
+│       │   └── ...                       # 5 more modules
+│       ├── environments/          # Cleanup, IPD, PGG, Harvest
+│       ├── training/              # MAPPO training pipeline
+│       └── run_full_pipeline.py   # End-to-end execution
+├── submission_neurips/            # LaTeX (NeurIPS 2026 format)
+├── submission_arxiv/              # arXiv package (32 figures)
+├── site/                          # Interactive dashboard (Vercel)
+├── reproduce.py                   # One-command reproduction (11 modules)
+├── prepare_arxiv.py               # arXiv package generator
+├── paper_english.md               # Full paper (English)
+├── paper_korean.md                # Full paper (Korean)
+└── twitter_thread_draft.md        # Social media draft
+```
+
+---
+
+## 📈 Reproduction Pipeline
+
+```
+$ python reproduce.py --phase M
+============================================================
+  EthicaAI Reproduction Pipeline
+  Phase: M  |  Mode: Full
+============================================================
+  ✓ M1: Full Sweep (4환경 × 7SVO × 10seeds)     — 15.2s
+  ✓ M2: Mixed-SVO Population (임계점 분석)        — 10.1s
+  ✓ M3: Communication Channels (Cheap Talk)      —  8.3s
+  ✓ M4: Continuous PGG (연속 행동 공간)           —  6.8s
+
+  Total: 4/4 succeeded (45.4s)
+  🎉 전체 재현 성공!
 ```
 
 ---
 
 ## 📜 Citation
 
-If you use this code or findings, please cite:
-
 ```bibtex
 @article{heo2026ethicaai,
-  title={Computational Verification of Amartya Sen's Optimal Rationality via Multi-Agent Reinforcement Learning with Meta-Ranking},
+  title={Beyond Homo Economicus: Computational Verification of Amartya Sen's
+         Meta-Ranking Theory via Multi-Agent Reinforcement Learning},
   author={Heo, Yesol},
   journal={arXiv preprint arXiv:2602.XXXXX},
   year={2026},
-  note={Prepared for NeurIPS 2026 Workshop}
+  note={30 figures, 560+ experiments, 4 environments, 11 reproduction modules}
 }
 ```
 
@@ -127,6 +190,6 @@ If you use this code or findings, please cite:
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+MIT License. See [LICENSE](LICENSE) for details.
 
 > *Built with ❤️ by the Antigravity Team.*
