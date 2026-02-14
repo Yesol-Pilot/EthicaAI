@@ -56,6 +56,26 @@ ANALYSES = {
         "module": "simulation.jax.analysis.mechanism_decomposition",
         "phase": "H",
     },
+    "M1": {
+        "name": "Full Sweep (4환경 × 7SVO × 10seeds)",
+        "module": "simulation.jax.analysis.run_full_sweep",
+        "phase": "M",
+    },
+    "M2": {
+        "name": "Mixed-SVO Population (임계점 분석)",
+        "module": "simulation.jax.analysis.mixed_svo_experiment",
+        "phase": "M",
+    },
+    "M3": {
+        "name": "Communication Channels (Cheap Talk)",
+        "module": "simulation.jax.analysis.communication_experiment",
+        "phase": "M",
+    },
+    "M4": {
+        "name": "Continuous PGG (연속 행동 공간)",
+        "module": "simulation.jax.analysis.continuous_experiment",
+        "phase": "M",
+    },
 }
 
 
@@ -91,7 +111,7 @@ def run_analysis(key, info, output_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="EthicaAI 재현성 스크립트")
-    parser.add_argument("--phase", choices=["G", "H", "all"], default="all",
+    parser.add_argument("--phase", choices=["G", "H", "M", "all"], default="all",
                        help="실행할 Phase (기본: all)")
     parser.add_argument("--quick", action="store_true",
                        help="빠른 데모 모드 (축소 실행)")
