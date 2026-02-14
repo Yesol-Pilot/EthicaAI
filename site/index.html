@@ -620,8 +620,8 @@
         <div class="badges">
             <span class="badge">📄 Preprint 2026</span>
             <span class="badge">🔬 7 SVO Conditions</span>
-            <span class="badge">🌍 3 Environments</span>
-            <span class="badge">👥 100 Agents</span>
+            <span class="badge">🌍 4 Environments</span>
+            <span class="badge">👥 1000 Agents</span>
         </div>
     </div>
 
@@ -636,7 +636,7 @@
     <div id="tab-dashboard" class="tab-content active">
         <div class="stats">
             <div class="stat">
-                <div class="val">19</div>
+                <div class="val">23</div>
                 <div class="lbl">Figures</div>
             </div>
             <div class="stat">
@@ -657,11 +657,12 @@
             </div>
         </div>
         <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterFigs('all')">All (19)</button>
+            <button class="filter-btn active" onclick="filterFigs('all')">All (23)</button>
             <button class="filter-btn" onclick="filterFigs('core')">Core (9)</button>
             <button class="filter-btn" onclick="filterFigs('scale')">Scale (3)</button>
             <button class="filter-btn" onclick="filterFigs('robust')">Robustness (3)</button>
             <button class="filter-btn" onclick="filterFigs('ext')">Extended (4)</button>
+            <button class="filter-btn" onclick="filterFigs('deep')">Deep Research (4)</button>
         </div>
         <div class="gallery" id="gallery"></div>
     </div>
@@ -855,8 +856,12 @@
             { id: 17, file: "fig17_pgg.png", title: "PGG Alignment", desc: "Individualist ≈ Human (WD=0.053)", ph: "ext" },
             { id: 18, file: "fig18_evolution.png", title: "Evolutionary ESS", desc: "Replicator → 12% convergence", ph: "ext" },
             { id: 19, file: "fig19_mechanism.png", title: "Mechanism Decomp.", desc: "SVO=86%, λ=13%, ψ=1%", ph: "ext" },
+            { id: 20, file: "fig20_harvest.png", title: "Harvest Cross-Val", desc: "4th env: cooperative Δ=+0.504", ph: "deep" },
+            { id: 21, file: "fig21_scale_1000.png", title: "1000-Agent Scale", desc: "Meta 0.25 vs Base 0.10", ph: "deep" },
+            { id: 22, file: "fig22_melting_pot.png", title: "Benchmark Radar", desc: "5-axis: 4/5 axes #1", ph: "deep" },
+            { id: 23, file: "fig23_constitutional.png", title: "Constitutional AI", desc: "5-layer reasoning engine", ph: "deep" },
         ];
-        const phC = { core: { c: "t-core", l: "Core" }, scale: { c: "t-scale", l: "Scale" }, robust: { c: "t-robust", l: "Robust" }, ext: { c: "t-ext", l: "Extended" } };
+        const phC = { core: { c: "t-core", l: "Core" }, scale: { c: "t-scale", l: "Scale" }, robust: { c: "t-robust", l: "Robust" }, ext: { c: "t-ext", l: "Extended" }, deep: { c: "t-ext", l: "Deep" } };
 
         function renderGallery(items) {
             document.getElementById('gallery').innerHTML = items.map(f => `
