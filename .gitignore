@@ -1,31 +1,53 @@
-# 의존성
+# ===== 🔒 보안 (최우선) =====
+# 환경 변수 / 시크릿 — 어떤 경우에도 커밋 금지
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+secrets/
+credentials/
+**/api_key*
+**/secret*
+**/*credentials*
+**/*token*
+
+# ===== 의존성 =====
 node_modules/
 __pycache__/
 *.pyc
+*.pyo
 .next/
 out/
-
-# 환경
-.env
-.env.local
 *.egg-info/
+venv/
+ethica_env/
 
-# IDE
+# ===== IDE =====
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# OS
+# ===== OS =====
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# 시뮬레이션 로그 (대용량)
+# ===== 시뮬레이션 (대용량) =====
 simulation/logs/
 simulation/checkpoints/
 !simulation/logs/.gitkeep
 
-# Jupyter
+# ===== Jupyter =====
 .ipynb_checkpoints/
 
-# 빌드
+# ===== 빌드 =====
 dist/
 build/
+*.egg

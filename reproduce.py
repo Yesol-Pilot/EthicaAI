@@ -76,6 +76,26 @@ ANALYSES = {
         "module": "simulation.jax.analysis.continuous_experiment",
         "phase": "M",
     },
+    "N1": {
+        "name": "MAPPO 멀티 환경 훈련 시뮬레이션",
+        "module": "simulation.jax.analysis.mappo_training_sim",
+        "phase": "N",
+    },
+    "N2": {
+        "name": "Partial Observability (정보 비대칭)",
+        "module": "simulation.jax.analysis.partial_obs_experiment",
+        "phase": "N",
+    },
+    "N3": {
+        "name": "Multi-Resource (2-자원 PGG)",
+        "module": "simulation.jax.analysis.multi_resource_experiment",
+        "phase": "N",
+    },
+    "N4": {
+        "name": "LLM vs λ 비교 (Constitutional)",
+        "module": "simulation.jax.analysis.llm_comparison_experiment",
+        "phase": "N",
+    },
 }
 
 
@@ -111,7 +131,7 @@ def run_analysis(key, info, output_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="EthicaAI 재현성 스크립트")
-    parser.add_argument("--phase", choices=["G", "H", "M", "all"], default="all",
+    parser.add_argument("--phase", choices=["G", "H", "M", "N", "all"], default="all",
                        help="실행할 Phase (기본: all)")
     parser.add_argument("--quick", action="store_true",
                        help="빠른 데모 모드 (축소 실행)")
