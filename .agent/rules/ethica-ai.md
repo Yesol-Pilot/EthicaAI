@@ -36,16 +36,23 @@
 
 ## 컴퓨팅 환경 정책
 
-### 현재 환경 (Windows Native)
+### 현재 환경
 - **GPU**: RTX 4070 SUPER (12GB VRAM)
-- **JAX**: CPU only ⚠️ (Windows에서 JAX CUDA 미지원)
-- **PyTorch**: CPU only(2.10.0+cpu) — CUDA 빌드 재설치 시 GPU 가능
-- **Python**: 3.x (miniconda3)
+- **Windows**: JAX/PyTorch CPU only (CUDA 미지원)
+- **WSL2 Ubuntu 24.04**: ✅ **JAX GPU 활성화** (CUDA, venv ~/ethicaai_env)
+- **Python**: Windows 3.13(miniconda) / WSL 3.12(venv)
 
-### GPU 활용 전략
-1. **현재 시뮬레이션**: JAX CPU + NumPy vectorization (충분히 빠름, 38모듈 ~15분)
-2. **대규모 학습 필요 시**: WSL2 Ubuntu + JAX CUDA 12 권장
-3. **PyTorch GPU 필요 시**: `pip install torch --index-url https://download.pytorch.org/whl/cu121`
+### GPU 실행 정책 (필수)
+1. **시뮬레이션/분석 실행**: 반드시 WSL2 GPU로 실행
+   ```bash
+   wsl -d Ubuntu-24.04 -- bash -c "source ~/ethicaai_env/bin/activate && cd /mnt/d/00.test/PAPER/EthicaAI && python3 reproduce.py"
+   ```
+2. **빠른 단일 모듈**: WSL2 경유
+   ```bash
+   wsl -d Ubuntu-24.04 -- bash -c "source ~/ethicaai_env/bin/activate && cd /mnt/d/00.test/PAPER/EthicaAI && python3 -m simulation.jax.analysis.<모듈> simulation/outputs/reproduce"
+   ```
+3. **파일 편집/Git/문서**: Windows에서 직접 (GPU 불필요)
+4. **벤치마크**: 5000×5000 matmul = **12.8ms** (GPU) vs ~2000ms (CPU) → **~150배 빠름**
 
 ### 자동 실행 정책
 - `python -m simulation.*` → SafeToAutoRun=true
