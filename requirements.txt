@@ -1,4 +1,5 @@
 # EthicaAI 실험 재현 환경
+# NeurIPS 2026 — 38 모듈, 74 Figure 전체 재현
 
 # 핵심 프레임워크
 jax>=0.4.0
@@ -18,10 +19,20 @@ numpy>=1.24.0
 scipy>=1.10.0
 matplotlib>=3.7.0
 pandas>=2.0.0
+seaborn>=0.13.0
 
 # 통계 분석
 statsmodels>=0.14.0
 
+# 인과 추론 (Phase P2: Causal Forest)
+econml>=0.15.0
+scikit-learn>=1.3.0
+
+# 해석성 (Phase Q5: SHAP)
+shap>=0.45.0
+
+# 네트워크 (Phase P4: Topology)
+networkx>=3.0
+
 # Interactive Demo
 streamlit>=1.30.0
-

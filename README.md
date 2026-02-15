@@ -1,55 +1,34 @@
 # EthicaAI: When Should AI Agents Be Moral? 🧠⚖️
 
 [![NeurIPS 2026](https://img.shields.io/badge/Target-NeurIPS_2026-blue?style=for-the-badge&logo=neurips)](https://neurips.cc)
-[![30 Figures](https://img.shields.io/badge/Figures-30-brightgreen?style=for-the-badge)](https://ethicaai.vercel.app)
-[![560+ Experiments](https://img.shields.io/badge/Experiments-560+-orange?style=for-the-badge)]()
+[![74 Figures](https://img.shields.io/badge/Figures-74-brightgreen?style=for-the-badge)](https://ethicaai.vercel.app)
+[![38 Modules](https://img.shields.io/badge/Modules-38-orange?style=for-the-badge)]()
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
 [![JAX](https://img.shields.io/badge/JAX-Accelerated-9cf?style=for-the-badge&logo=google&logoColor=white)](https://github.com/google/jax)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 > **"The question isn't *whether* AI should be moral, but *when*."**
 
-**EthicaAI** formalizes Amartya Sen's **Meta-Ranking** theory (preferences over preferences) as a dynamic mechanism in Multi-Agent Reinforcement Learning. We demonstrate that _Situational Commitment_ — morality conditional on survival — is the only Evolutionarily Stable Strategy across 4 environments, 7 SVO conditions, and up to 1,000 agents.
+**EthicaAI** formalizes Amartya Sen's **Meta-Ranking** theory (preferences over preferences) as a dynamic mechanism in Multi-Agent Reinforcement Learning. We demonstrate that _Situational Commitment_ — morality conditional on survival — is the only Evolutionarily Stable Strategy across 8 environments, 7 SVO conditions, and up to 1,000 agents.
 
 <p align="center">
-  <a href="https://ethicaai.vercel.app"><strong>🌐 Interactive Dashboard (30 Figures)</strong></a> &nbsp;|&nbsp;
-  <a href="paper_english.md"><strong>📄 Full Paper</strong></a> &nbsp;|&nbsp;
-  <a href="submission_neurips/main.tex"><strong>📝 LaTeX</strong></a>
+  <a href="https://ethicaai.vercel.app"><strong>🌐 Interactive Dashboard (74 Figures)</strong></a> &nbsp;|&nbsp;
+  <a href="paper_english.md"><strong>📄 Full Paper (35 Sections)</strong></a> &nbsp;|&nbsp;
+  <a href="paper/neurips2026_main.tex"><strong>📝 NeurIPS LaTeX</strong></a>
 </p>
 
 ---
 
-## 🔬 Five Key Findings
+## 🔬 Key Findings
 
 | # | Finding | Evidence |
 |:-:|---------|---------|
-| **1** | Dynamic meta-ranking (λ_t) significantly enhances collective welfare | p=0.0003, Cohen's f²=0.40 |
-| **2** | Agents exhibit emergent **role specialization** (Cleaners vs Eaters) | σ divergence p<0.0001 |
-| **3** | Only "Situational Commitment" survives as **ESS** (~12% of population) | 200-gen replicator dynamics |
-| **4** | Individualist SVO (θ=15°) best matches **human PGG data** | WD=0.053 |
-| **5** | SVO rotation accounts for **86%** of total effect | Full factorial 2³ decomposition |
-
----
-
-## 🌟 Extended Results (Phase M)
-
-### Full Environmental Sweep (560 runs)
-4 environments × 7 SVO × 10 seeds — the most comprehensive test of meta-ranking to date.
-
-| Environment | Best ATE (Cooperation) | Optimal SVO | ATE (Reward) |
-|:-:|:-:|:-:|:-:|
-| Cleanup | +0.083 | Cooperative (60°) | — |
-| **PGG** | **+0.211** | **Prosocial (45°)** | **+2.535** |
-| **Harvest** | **+0.506** | **Selfish (0°)** | **+0.101** |
-
-### Mixed-SVO Populations: Tipping Point
-A **nonlinear tipping point** at ~30% prosocial fraction triggers population-wide cooperation. PGG welfare improvement: **ΔW = +10,080**.
-
-### Communication Channels
-1-bit cheap talk boosts cooperation by **+5.8%** for prosocial agents. Message truthfulness converges to **98%** — honesty is evolutionarily favored.
-
-### Continuous Action Spaces
-Beta-distribution policies in continuous PGG maintain meta-ranking's ATE ≈ **+0.20**, confirming generalization beyond discrete decisions.
+| **1** | Dynamic meta-ranking (λ_t) significantly enhances collective welfare | p<0.001 (LMM), Cohen's f²=0.40 |
+| **2** | Emergent **role specialization** (Cleaners vs Eaters) | σ divergence p<0.0001 |
+| **3** | Only "Situational Commitment" survives as **ESS** | 5-theory comparison, 200-gen replicator |
+| **4** | **Scale invariant** from 20 to 1,000 agents | SII ≈ 1.0, 1.32ms/agent |
+| **5** | **Byzantine robust** at 50% adversarial population | Coop=1.000, 100% sustainability |
+| **6** | SVO accounts for **79.8%** of λ_t determination | SHAP attribution analysis |
 
 ---
 
@@ -73,55 +52,60 @@ pip install -r requirements.txt
 
 ### Reproduce All Results (One Command)
 ```bash
-# All 11 analysis modules (Phase G + H + M)
+# All 38 analysis modules (Phase G → Q)
 python reproduce.py
 
-# Phase M only (4 new experiments)
-python reproduce.py --phase M
+# Specific phase only
+python reproduce.py --phase P  # Phase P (Scale, LMM, Mechanism Design, etc.)
+python reproduce.py --phase Q  # Phase Q (Moran, GNN, Interpretability, Policy)
 
 # Quick demo
 python reproduce.py --quick
 ```
 
+### Docker (Zero Setup)
+```bash
+# Build & run (generates all 74 figures)
+docker build -t ethicaai .
+docker run -v $(pwd)/output:/ethicaai/simulation/outputs/reproduce ethicaai
+
+# Specific phase
+docker run ethicaai python reproduce.py --phase P
+```
+
 ### Run Individual Experiments
 ```bash
-# M1: Full Sweep (4 envs × 7 SVO × 10 seeds)
-python -m simulation.jax.analysis.run_full_sweep simulation/outputs/reproduce
+# Phase P: Deepening
+python -m simulation.jax.analysis.scale_1000 simulation/outputs/reproduce       # P1: 1000-agent scale
+python -m simulation.jax.analysis.lmm_causal_forest simulation/outputs/reproduce # P2: LMM + HTE
+python -m simulation.jax.analysis.continuous_pgg simulation/outputs/reproduce     # P3: Continuous PGG
+python -m simulation.jax.analysis.network_topology simulation/outputs/reproduce   # P4: Network effects
+python -m simulation.jax.analysis.mechanism_design simulation/outputs/reproduce   # P5: IC/IR/NE
+python -m simulation.jax.analysis.adversarial_robustness simulation/outputs/reproduce # P6: Byzantine
 
-# M2: Mixed-SVO tipping point analysis
-python -m simulation.jax.analysis.mixed_svo_experiment simulation/outputs/reproduce
-
-# M3: Communication channels (cheap talk)
-python -m simulation.jax.analysis.communication_experiment simulation/outputs/reproduce
-
-# M4: Continuous PGG (Beta-distribution policies)
-python -m simulation.jax.analysis.continuous_experiment simulation/outputs/reproduce
-```
-
-### Full Training Pipeline (100 Agents)
-```bash
-python -m simulation.jax.run_full_pipeline large_full      # Meta-Ranking ON
-python -m simulation.jax.run_full_pipeline large_baseline   # Baseline (OFF)
-```
-
-### Prepare arXiv Submission
-```bash
-python prepare_arxiv.py  # Generates ethicaai_arxiv.tar.gz
+# Phase Q: Novel Contributions
+python -m simulation.jax.analysis.moran_process simulation/outputs/reproduce     # Q2: Moran Process
+python -m simulation.jax.analysis.moral_theories simulation/outputs/reproduce    # Q3: 5 Moral Theories
+python -m simulation.jax.analysis.gnn_agent simulation/outputs/reproduce         # Q4: GNN Agents
+python -m simulation.jax.analysis.interpretability simulation/outputs/reproduce  # Q5: Mechanistic
+python -m simulation.jax.analysis.policy_implications simulation/outputs/reproduce # Q6: Policy
 ```
 
 ---
 
-## 📊 30 Figures
+## 📊 74 Figures
 
-All figures are interactive at [ethicaai.vercel.app](https://ethicaai.vercel.app).
+All figures available at [ethicaai.vercel.app](https://ethicaai.vercel.app).
 
 | Phase | Figures | Content |
 |:-----:|:-------:|---------|
-| **Core** (A–D) | Fig 1–9 | Learning curves, cooperation rates, role specialization, Gini, causal forest |
-| **Scale** (E) | Fig 10–11 | 100-agent scale comparison, ATE analysis |
-| **Robustness** (G) | Fig 12–16 | Convergence, static/dynamic λ, sensitivity, cross-environment |
-| **Extended** (H) | Fig 17–23 | PGG, evolution, mechanism decomposition, Harvest, Melting Pot, Constitutional AI |
-| **Deep** (M) | Fig 24–30 | Full sweep heatmap, mixed-SVO tipping point, communication, continuous PGG |
+| **G** (Core) | 1–18 | Convergence, static/dynamic λ, sensitivity, cross-env |
+| **H** (Evolution) | 9–14 | Evolutionary competition, mechanism decomposition |
+| **M** (Extended) | 19–30 | Full sweep, mixed-SVO, communication, continuous PGG |
+| **N** (Advanced) | 31–38 | MAPPO, partial obs, multi-resource, LLM comparison |
+| **O** (Real-world) | 39–48 | Climate, vaccine, AI governance, Human-AI pilot |
+| **P** (Deepening) | 49–62 | Scale 1000, LMM, continuous, network, mechanism, adversarial |
+| **Q** (Novel) | 53–70 | Moral theories, Moran, interpretability, policy, GNN |
 
 ---
 
@@ -131,25 +115,17 @@ All figures are interactive at [ethicaai.vercel.app](https://ethicaai.vercel.app
 EthicaAI/
 ├── simulation/
 │   └── jax/
-│       ├── analysis/              # 11 analysis modules
-│       │   ├── run_full_sweep.py         # M1: Full environmental sweep
-│       │   ├── mixed_svo_experiment.py   # M2: Mixed-SVO populations
-│       │   ├── communication_experiment.py # M3: Cheap talk
-│       │   ├── continuous_experiment.py  # M4: Continuous PGG
-│       │   ├── convergence_proof.py      # Convergence verification
-│       │   ├── sensitivity_analysis.py   # Parameter sensitivity
-│       │   └── ...                       # 5 more modules
-│       ├── environments/          # Cleanup, IPD, PGG, Harvest
+│       ├── analysis/              # 38 analysis modules
+│       ├── environments/          # Cleanup, IPD, PGG, Harvest, Network
 │       ├── training/              # MAPPO training pipeline
 │       └── run_full_pipeline.py   # End-to-end execution
-├── submission_neurips/            # LaTeX (NeurIPS 2026 format)
-├── submission_arxiv/              # arXiv package (32 figures)
+├── paper/                         # NeurIPS 2026 LaTeX (Main 8p + Supplementary 30p)
 ├── site/                          # Interactive dashboard (Vercel)
-├── reproduce.py                   # One-command reproduction (11 modules)
-├── prepare_arxiv.py               # arXiv package generator
-├── paper_english.md               # Full paper (English)
-├── paper_korean.md                # Full paper (Korean)
-└── twitter_thread_draft.md        # Social media draft
+├── reproduce.py                   # One-command reproduction (38 modules)
+├── Dockerfile                     # Docker reproducibility package
+├── requirements.txt               # Python dependencies
+├── paper_english.md               # Full paper (35 sections)
+└── paper_korean.md                # Full paper (Korean)
 ```
 
 ---
@@ -157,17 +133,21 @@ EthicaAI/
 ## 📈 Reproduction Pipeline
 
 ```
-$ python reproduce.py --phase M
+$ python reproduce.py
 ============================================================
   EthicaAI Reproduction Pipeline
-  Phase: M  |  Mode: Full
+  Phase: all  |  Mode: Full  |  Modules: 38
 ============================================================
-  ✓ M1: Full Sweep (4환경 × 7SVO × 10seeds)     — 15.2s
-  ✓ M2: Mixed-SVO Population (임계점 분석)        — 10.1s
-  ✓ M3: Communication Channels (Cheap Talk)      —  8.3s
-  ✓ M4: Continuous PGG (연속 행동 공간)           —  6.8s
+  ✓ G1–G5: Core validation (convergence, sensitivity, cross-env)
+  ✓ H1–H2: Evolutionary competition, mechanism decomposition
+  ✓ M1–M4: Full sweep, mixed-SVO, communication, continuous
+  ✓ N1–N4: MAPPO, partial obs, multi-resource, LLM
+  ✓ O1–O8: Climate, vaccine, governance, Human-AI pilot
+  ✓ P1–P6: Scale 1000, LMM, continuous, network, mechanism, adversarial
+  ✓ Q2–Q6: Moran, moral theories, GNN, interpretability, policy
 
-  Total: 4/4 succeeded (45.4s)
+  Total: 38/38 succeeded
+  Figures: 74 generated
   🎉 전체 재현 성공!
 ```
 
@@ -178,11 +158,11 @@ $ python reproduce.py --phase M
 ```bibtex
 @article{heo2026ethicaai,
   title={Beyond Homo Economicus: Computational Verification of Amartya Sen's
-         Meta-Ranking Theory via Multi-Agent Reinforcement Learning},
+         Meta-Ranking Theory in Multi-Agent Social Dilemmas},
   author={Heo, Yesol},
   journal={arXiv preprint arXiv:2602.XXXXX},
   year={2026},
-  note={30 figures, 560+ experiments, 4 environments, 11 reproduction modules}
+  note={74 figures, 38 modules, 8 environments, NeurIPS 2026}
 }
 ```
 
