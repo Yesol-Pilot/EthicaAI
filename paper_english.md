@@ -557,6 +557,7 @@ We simulated meta-ranking's impact on AI regulation and carbon tax policies (Fig
 9. ~~**Climate Negotiation Simulation**: Modeling meta-ranking in multi-nation carbon reduction cost allocation games~~ → **Completed** (Section 5.8-5.9): Vaccine allocation + AI governance
 10. ~~**Formal Convergence Proof**: Lyapunov stability analysis of $\lambda_t$ dynamics to guarantee convergence~~ → **Completed**: ρ = 0.810 contraction mapping, Theorem 1B (time-varying resources)
 11. ~~**Hybrid $\lambda$-LLM Agent**: Combining mathematical $\lambda_t$ with LLM reasoning for ambiguous situations~~ → **Completed** (Section 5.10): 84% performance at 12% cost
+12. **Reward Shaping vs. Mechanism Design**: Our Genesis experiments (Adaptive β, Inverse β) demonstrate that reward function adjustments *alone* cannot alter cooperation rates—all three modes produced identical cooperation (prosocial: 0.133, full_altruist: 0.131) despite 4–6% reward improvements under Adaptive β. This **negative result** confirms that cooperation emergence requires structural environmental changes (mechanism design) rather than parameter tuning, reinforcing finding C1 that meta-ranking is a modulator, not a generator, of moral behavior.
 
 ---
 

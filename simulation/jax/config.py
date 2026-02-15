@@ -24,6 +24,13 @@ _HRL_DEFAULTS = {
     # Experiment Control Flags
     "USE_META_RANKING": True,          # False = baseline (순수 SVO 보상변환)
     "META_USE_DYNAMIC_LAMBDA": True,   # False = λ = sin(θ) 고정 (ablation)
+    # Genesis Autonomous Research Flags
+    "GENESIS_MODE": False,             # True = Genesis 실험 모드 활성화
+    "GENESIS_BETA_BASE": 10.0,        # Genesis: beta 기본값
+    "GENESIS_GAMMA": 2.0,             # Genesis: 감쇠 계수
+    "GENESIS_ALPHA": 5.0,             # Genesis: 증폭 계수
+    # Infrastructure
+    "DASHBOARD_PORT": 4011,            # Local port allocation (4011~4020)
 }
 
 # --- Small Scale (Development & Debugging) ---

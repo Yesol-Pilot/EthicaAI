@@ -266,32 +266,62 @@ def print_summary(effect_matrix, robustness):
 if __name__ == "__main__":
     import sys
     
-    if len(sys.argv) < 3:
-        print("Usage: python sensitivity_analysis.py <full_dir> <baseline_dir>")
-        sys.exit(1)
+    output_dir = sys.argv[1] if len(sys.argv) >= 2 else "simulation/outputs/reproduce"
+    os.makedirs(output_dir, exist_ok=True)
     
-    full_dir = sys.argv[1]
-    base_dir = sys.argv[2]
-    
-    # sweep 파일 로드
-    full_sweep = [f for f in os.listdir(full_dir) if f.startswith("sweep_")][0]
-    base_sweep = [f for f in os.listdir(base_dir) if f.startswith("sweep_")][0]
-    
-    full_data = load_sweep_per_svo(os.path.join(full_dir, full_sweep))
-    base_data = load_sweep_per_svo(os.path.join(base_dir, base_sweep))
+    # 인자 2개면 기존 방식, 1개면 standalone 모드
+    if len(sys.argv) >= 3:
+        full_dir = sys.argv[1]
+        base_dir = sys.argv[2]
+        full_sweep = [f for f in os.listdir(full_dir) if f.startswith("sweep_")][0]
+        base_sweep = [f for f in os.listdir(base_dir) if f.startswith("sweep_")][0]
+        full_data = load_sweep_per_svo(os.path.join(full_dir, full_sweep))
+        base_data = load_sweep_per_svo(os.path.join(base_dir, base_sweep))
+    else:
+        # Standalone 모드: 자체 mini sweep 데이터 생성
+        print("[G1] Standalone 모드: Full/Baseline mini sweep 생성")
+        from simulation.jax.experiment_jax import run_sweep
+        from simulation.jax.config import SVO_SWEEP_THETAS
+        
+        angles = {
+            "prosocial": SVO_SWEEP_THETAS["prosocial"],
+            "cooperative": SVO_SWEEP_THETAS["cooperative"],
+            "individualist": SVO_SWEEP_THETAS["individualist"],
+        }
+        
+        # Full model sweep
+        full_out = os.path.join(output_dir, "g1_full")
+        os.makedirs(full_out, exist_ok=True)
+        full_result, full_path = run_sweep(
+            scale="small", svo_angles=angles, seeds=[42],
+            output_dir=full_out,
+        )
+        full_data = load_sweep_per_svo(full_path)
+        
+        # Baseline sweep (meta OFF)
+        base_out = os.path.join(output_dir, "g1_baseline")
+        os.makedirs(base_out, exist_ok=True)
+        base_result, base_path = run_sweep(
+            scale="small", svo_angles=angles, seeds=[42],
+            output_dir=base_out,
+            config_override={"USE_META_RANKING": False},
+        )
+        base_data = load_sweep_per_svo(base_path)
+        print("[G1] Mini sweep 완료")
     
     effect_matrix = compute_effect_sizes(full_data, base_data)
     robustness = compute_seed_robustness(full_data)
     
     print_summary(effect_matrix, robustness)
     
-    fig_path = plot_sensitivity(effect_matrix, robustness, full_dir)
+    fig_path = plot_sensitivity(effect_matrix, robustness, output_dir)
     
     # 결과 저장
-    out_json = os.path.join(full_dir, "sensitivity_results.json")
+    out_json = os.path.join(output_dir, "sensitivity_results.json")
     with open(out_json, "w") as f:
         json.dump({
             "effect_matrix": effect_matrix,
             "robustness": robustness,
         }, f, indent=2, default=str)
     print(f"[G1] 결과 JSON 저장: {out_json}")
+

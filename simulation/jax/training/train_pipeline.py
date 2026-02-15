@@ -8,6 +8,13 @@ import math
 from jax import lax, random, value_and_grad, jit
 import chex
 import optax
+
+# Genesis Experimental Module (optional, activated by GENESIS_MODE=True)
+try:
+    from simulation.jax.training.train_pipeline_genesis import apply_genesis_reward
+    _GENESIS_AVAILABLE = True
+except ImportError:
+    _GENESIS_AVAILABLE = False
 from flax.linen.initializers import constant, orthogonal
 from typing import NamedTuple, Dict, Callable
 
@@ -235,7 +242,16 @@ def make_train(config):
             
             # R_total = (1-λ)·U_self + λ·[U_meta - ψ]
             meta_ranking_rewards = (1 - lambda_dynamic) * combined_rewards + \
-                           lambda_dynamic * (r_avg_others - psi)
+                                   lambda_dynamic * (r_avg_others - psi)
+            
+            # === Genesis Mode: Override meta_ranking_rewards ===
+            genesis_mode = config.get("GENESIS_MODE", False)
+            if genesis_mode and _GENESIS_AVAILABLE:
+                genesis_hypo = config.get("GENESIS_HYPOTHESIS", "inverse_beta")
+                meta_ranking_rewards, _dbg = apply_genesis_reward(
+                    combined_rewards, r_avg_others, lambda_base,
+                    flat_levels, config, mode=genesis_hypo
+                )
             
             # 최종 보상 선택: 메타랭킹 vs Baseline
             meta_rewards = jnp.where(use_meta, meta_ranking_rewards, baseline_rewards)

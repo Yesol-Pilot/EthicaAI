@@ -10,9 +10,9 @@ EthicaAI Phase P — NeurIPS 방법론 보강
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 import json
 import os
 import sys
@@ -364,5 +364,6 @@ if __name__ == "__main__":
     json_data = {"lmm": lmm_results, "hte": hte_by_svo}
     json_path = os.path.join(OUTPUT_DIR, "lmm_causal_forest_results.json")
     with open(json_path, 'w', encoding='utf-8') as f:
-        json.dump(json_data, f, indent=2, ensure_ascii=False)
+        json.dump(json_data, f, indent=2, ensure_ascii=False, default=str)
     print(f"\n[P2] 결과 JSON: {json_path}")
+

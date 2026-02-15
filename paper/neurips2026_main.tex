@@ -38,8 +38,8 @@ Our dynamic commitment mechanism $\lambda_t$, conditioned on resource availabili
 Three key findings emerge:
 (1) Dynamic meta-ranking significantly enhances collective welfare ($p{<}0.001$ via LMM with agent-level random effects), while static SVO injection fails ($p{=}0.64$).
 (2) Non-significant cooperation rates mask \emph{emergent role specialization}---a division of labor between ``Cleaners'' and ``Eaters'' that improves sustainability.
-(3) \textbf{Situational Commitment}---conditional altruism with survival instincts---is the only Evolutionarily Stable Strategy, outperforming Utilitarian, Deontological, Virtue, and pure Selfish alternatives.
-We further demonstrate \textbf{scale invariance} (SII$\approx$1.0 from 20 to 1,000 agents), \textbf{Byzantine robustness} (cooperation maintained at 50\% adversarial population), and \textbf{policy implications} for AI regulation and carbon taxation.
+(3) \textbf{Situational Commitment} achieves utilitarian-optimal welfare (147.7) using only local information, matching the performance of global utilitarianism (99.6\% ESS).
+We further demonstrate \textbf{scale invariance} (SII$\approx$1.0 up to 1,000 agents), \textbf{robust tracking} under time-varying constraints (Theorem~\ref{thm:tracking}), and \textbf{human alignment} via oTree experiments.
 Code and data: \url{https://github.com/Yesol-Pilot/EthicaAI}.
 \end{abstract}
 
@@ -49,13 +49,14 @@ Rational Choice Theory defines human behavior as utility maximization under cons
 Sen~\cite{sen1977rational} critiqued this as the ``Rational Fool,'' arguing that genuine moral behavior requires \textit{commitment}---acting against immediate self-interest---mediated through \textit{meta-rankings}: preferences over preference orderings.
 
 While recent work has explored value alignment in MARL~\cite{rodriguez2021multi,christoffersen2023get}, these approaches typically inject fixed moral values as reward shaping, ignoring Sen's crucial insight that commitment must adapt to survival constraints.
-We bridge this gap with four contributions:
+We bridge this gap with five contributions:
 
 \begin{enumerate}
-    \item \textbf{(C1) Dynamic Meta-Ranking}: First MARL implementation of Sen's theory via $\lambda_t = f(\text{SVO}, R_t, \lambda_{t-1})$, with convergence guarantees (Theorem~\ref{thm:convergence}).
+    \item \textbf{(C1) Dynamic Meta-Ranking}: First MARL implementation of Sen's theory via $\lambda_t = f(\text{SVO}, R_t, \lambda_{t-1})$, with convergence guarantees (Theorem~\ref{thm:convergence}) and robust tracking (Theorem~\ref{thm:tracking}).
     \item \textbf{(C2) Role Specialization}: Discovery of emergent division of labor that resolves the ``cooperation paradox''---non-significant cooperation rates coexist with significant welfare gains.
-    \item \textbf{(C3) Moral Theory Comparison}: First computational comparison of 5 moral frameworks, showing Situational Commitment achieves utilitarian-optimal outcomes without global information.
-    \item \textbf{(C4) Robustness at Scale}: Verification across 1,000 agents, 5 network topologies, nonlinear production, and 50\% adversarial populations.
+    \item \textbf{(C3) Local vs Global Optimality}: Comparison of 5 moral frameworks showing Situational Commitment matches Utilitarian optimality without requiring global state information.
+    \item \textbf{(C4) Robustness at Scale}: Verification across 1,000 agents, 5 network topologies, and 50\% adversarial populations.
+    \item \textbf{(C5) Human Verification}: Preliminary validation of meta-ranking dynamics via oTree-based human PGG experiments.
 \end{enumerate}
 
 \section{Related Work}
@@ -103,6 +104,11 @@ where $g(\theta, R) = \begin{cases}
 \begin{theorem}[Convergence]
 \label{thm:convergence}
 For $\alpha \in (0,1)$ and bounded $g$, the $\lambda_t$ update rule (Eq.~\ref{eq:lambda}) is a contraction mapping with unique fixed point $\lambda^* = g(\theta, R^*)$, converging geometrically at rate $\alpha$.
+\end{theorem}
+
+\begin{theorem}[Robust Tracking]
+\label{thm:tracking}
+Under time-varying resources $R_t$, the tracking error is bounded by $|\lambda_t - \lambda^*(R_t)| \le \rho^t |\lambda_0 - \lambda^*_0| + \frac{D}{1-\rho}$, where $\rho = (1-\alpha)$ and $D = \max_t |\lambda^*(R_{t+1}) - \lambda^*(R_t)|$.
 \end{theorem}
 
 \subsection{Environments}
@@ -180,7 +186,7 @@ Selfish & 0.000 & 102.8 & 26\% & 0.1\% \\
 \end{tabular}
 \end{table}
 
-\textbf{Key insight}: Situational Commitment achieves utilitarian-optimal welfare \textit{without requiring global information}---each agent uses only local resource $R_t$ and own SVO $\theta$.
+\textbf{Key insight}: Situational Commitment achieves utilitarian-optimal welfare \textit{without requiring global information}---each agent uses only local resource $R_t$ and own SVO $\theta$. While Utilitarian agents maximize global welfare by definition, Situational agents approximate this optimal behavior purely through local adaptability.
 
 \subsection{Byzantine Robustness (P6)}
 
@@ -209,7 +215,7 @@ Decomposing the $\lambda_t$ circuit: SVO accounts for \textbf{79.8\%} of $\lambd
 
 \textbf{Policy implications.} Simulations of AI regulation and carbon taxation (Sec. 5.22) show that 50\% meta-ranking adoption reduces the need for external regulation while increasing emission reduction from 61.3\% to 64.3\%.
 
-\textbf{Negative results as contributions.} GNN agents perform equivalently to simple averaging ($\Delta$Coop = $-$0.004), suggesting meta-ranking's power lies in the $\lambda$ dynamics, not neighbor aggregation.
+\textbf{Negative results as contributions.} GNN agents perform equivalently to simple averaging ($\Delta$Coop = $-$0.004), suggesting meta-ranking's power lies in the $\lambda$ dynamics, not neighbor aggregation. Furthermore, our Genesis reward-shaping experiments (Adaptive $\beta$, Inverse $\beta$ across 12 configurations) demonstrate that \textit{reward function modifications alone cannot alter cooperation rates}---all three modes produced identical cooperation (0.133 for prosocial SVO) despite 4--6\% reward improvements. This confirms that cooperation emergence requires structural environmental changes (mechanism design), not parameter tuning.
 
 \section{Conclusion}
 

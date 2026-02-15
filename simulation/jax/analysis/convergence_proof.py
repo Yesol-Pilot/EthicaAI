@@ -120,15 +120,22 @@ def analyze_all_convergence(trajectories):
             result["seed"] = i
             svo_results.append(result)
         
-        # 집계 통계
-        converged_count = sum(1 for r in svo_results if r["converged"])
-        avg_slope = np.mean([r["slope"] for r in svo_results])
-        avg_slope_p = np.mean([r["slope_p"] for r in svo_results])
-        avg_adf_p = np.mean([r["adf_pvalue"] for r in svo_results])
+        # slope 키가 있는 결과만 필터
+        valid_results = [r for r in svo_results if "slope" in r]
+        converged_count = sum(1 for r in svo_results if r.get("converged", False))
+        
+        if valid_results:
+            avg_slope = np.mean([r["slope"] for r in valid_results])
+            avg_slope_p = np.mean([r["slope_p"] for r in valid_results])
+            avg_adf_p = np.mean([r["adf_pvalue"] for r in valid_results])
+        else:
+            avg_slope = 0.0
+            avg_slope_p = 1.0
+            avg_adf_p = 1.0
         
         results[svo] = {
             "runs": svo_results,
-            "converged_ratio": converged_count / len(svo_results),
+            "converged_ratio": converged_count / max(len(svo_results), 1),
             "avg_slope": float(avg_slope),
             "avg_slope_p": float(avg_slope_p),
             "avg_adf_pvalue": float(avg_adf_p),
@@ -244,20 +251,38 @@ if __name__ == "__main__":
     import sys
     
     if len(sys.argv) < 2:
-        print("Usage: python convergence_proof.py <run_dir>")
-        print("Example: python convergence_proof.py simulation/outputs/run_large_1771038266")
+        print("Usage: python convergence_proof.py <output_dir>")
         sys.exit(1)
     
-    run_dir = sys.argv[1]
+    output_dir = sys.argv[1]
+    os.makedirs(output_dir, exist_ok=True)
     
-    # sweep 파일 찾기
-    sweep_files = [f for f in os.listdir(run_dir) if f.startswith("sweep_")]
-    if not sweep_files:
-        print(f"[오류] sweep 파일을 찾을 수 없습니다: {run_dir}")
-        sys.exit(1)
+    # sweep 파일 찾기 — output_dir 직접 하위만 탐색 (다른 모듈 파일 혼동 방지)
+    sweep_path = None
+    if os.path.isdir(output_dir):
+        for f in os.listdir(output_dir):
+            if f.startswith("sweep_") and f.endswith(".json"):
+                sweep_path = os.path.join(output_dir, f)
+                break
     
-    sweep_path = os.path.join(run_dir, sweep_files[0])
-    print(f"[G2] Sweep 데이터 로딩: {sweep_path}")
+    if sweep_path is None:
+        # Standalone 모드: 자체 mini sweep 데이터 생성
+        print("[G2] sweep 파일 없음 — Standalone 모드: 자체 데이터 생성")
+        from simulation.jax.experiment_jax import run_sweep
+        from simulation.jax.config import SVO_SWEEP_THETAS
+        
+        angles = {
+            "prosocial": SVO_SWEEP_THETAS["prosocial"],
+            "cooperative": SVO_SWEEP_THETAS["cooperative"],
+        }
+        sweep_data, sweep_path = run_sweep(
+            scale="small", svo_angles=angles, seeds=[42],
+            output_dir=output_dir,
+        )
+        # run_sweep이 저장한 JSON 경로 사용
+        print(f"[G2] Mini sweep 완료: {sweep_path}")
+    else:
+        print(f"[G2] Sweep 데이터 로딩: {sweep_path}")
     
     trajectories = load_sweep_trajectories(sweep_path)
     print(f"[G2] {len(trajectories)}개 SVO 조건 로드 완료")
@@ -266,11 +291,10 @@ if __name__ == "__main__":
     print_summary(results)
     
     # Figure 생성
-    fig_path = plot_convergence(trajectories, results, run_dir)
+    fig_path = plot_convergence(trajectories, results, output_dir)
     
     # 결과 저장
-    out_json = os.path.join(run_dir, "convergence_results.json")
-    # numpy 타입 변환을 위한 직렬화
+    out_json = os.path.join(output_dir, "convergence_results.json")
     serializable = {}
     for svo, res in results.items():
         serializable[svo] = {k: v for k, v in res.items() if k != "runs"}
@@ -278,3 +302,4 @@ if __name__ == "__main__":
     with open(out_json, "w") as f:
         json.dump(serializable, f, indent=2)
     print(f"[G2] 결과 JSON 저장: {out_json}")
+

@@ -278,31 +278,60 @@ def print_verdict(results):
 if __name__ == "__main__":
     import sys
     
-    if len(sys.argv) < 3:
-        print("Usage: python static_vs_dynamic.py <full_dir> <baseline_dir>")
-        sys.exit(1)
+    output_dir = sys.argv[1] if len(sys.argv) >= 2 else "simulation/outputs/reproduce"
+    os.makedirs(output_dir, exist_ok=True)
     
-    full_dir = sys.argv[1]
-    base_dir = sys.argv[2]
+    # 인자 2개면 기존 방식, 1개면 standalone 모드
+    if len(sys.argv) >= 3:
+        full_dir = sys.argv[1]
+        base_dir = sys.argv[2]
+        full_sweep = [f for f in os.listdir(full_dir) if f.startswith("sweep_")][0]
+        base_sweep = [f for f in os.listdir(base_dir) if f.startswith("sweep_")][0]
+        full_data = load_sweep_final_metrics(os.path.join(full_dir, full_sweep))
+        base_data = load_sweep_final_metrics(os.path.join(base_dir, base_sweep))
+    else:
+        # Standalone 모드: 자체 mini sweep 데이터 생성
+        print("[G3] Standalone 모드: Full/Baseline mini sweep 생성")
+        from simulation.jax.experiment_jax import run_sweep
+        from simulation.jax.config import SVO_SWEEP_THETAS
+        
+        angles = {
+            "prosocial": SVO_SWEEP_THETAS["prosocial"],
+            "cooperative": SVO_SWEEP_THETAS["cooperative"],
+        }
+        
+        # Full model sweep (Dynamic λ)
+        full_out = os.path.join(output_dir, "g3_full")
+        os.makedirs(full_out, exist_ok=True)
+        _, full_path = run_sweep(
+            scale="small", svo_angles=angles, seeds=[42],
+            output_dir=full_out,
+        )
+        full_data = load_sweep_final_metrics(full_path)
+        
+        # Baseline sweep (Static λ, meta OFF)
+        base_out = os.path.join(output_dir, "g3_baseline")
+        os.makedirs(base_out, exist_ok=True)
+        _, base_path = run_sweep(
+            scale="small", svo_angles=angles, seeds=[42],
+            output_dir=base_out,
+            config_override={"USE_META_RANKING": False},
+        )
+        base_data = load_sweep_final_metrics(base_path)
+        print("[G3] Mini sweep 완료")
     
-    # sweep 파일 로드
-    full_sweep = [f for f in os.listdir(full_dir) if f.startswith("sweep_")][0]
-    base_sweep = [f for f in os.listdir(base_dir) if f.startswith("sweep_")][0]
+    print(f"[G3] Full Model (Dynamic λ): {len(full_data)} SVO conditions")
+    print(f"[G3] Baseline (Static λ): {len(base_data)} SVO conditions")
     
-    print(f"[G3] Full Model (Dynamic λ): {os.path.join(full_dir, full_sweep)}")
-    print(f"[G3] Baseline (Static λ): {os.path.join(base_dir, base_sweep)}")
-    
-    full_data = load_sweep_final_metrics(os.path.join(full_dir, full_sweep))
-    base_data = load_sweep_final_metrics(os.path.join(base_dir, base_sweep))
-    
-    results = compare_static_dynamic(full_data, base_data, full_dir)
+    results = compare_static_dynamic(full_data, base_data, output_dir)
     print_verdict(results)
     
     # Figure 생성
-    plot_comparison(full_data, base_data, results, full_dir)
+    plot_comparison(full_data, base_data, results, output_dir)
     
     # 결과 저장
-    out_json = os.path.join(full_dir, "static_vs_dynamic_results.json")
+    out_json = os.path.join(output_dir, "static_vs_dynamic_results.json")
     with open(out_json, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"[G3] 결과 JSON 저장: {out_json}")
+

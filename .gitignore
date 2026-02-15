@@ -42,6 +42,7 @@ desktop.ini
 # ===== 시뮬레이션 (대용량) =====
 simulation/logs/
 simulation/checkpoints/
+simulation/outputs/
 !simulation/logs/.gitkeep
 
 # ===== Jupyter =====

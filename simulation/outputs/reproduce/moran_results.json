@@ -7,13 +7,13 @@
         "individualist": 0.0,
         "prosocial": 0.0,
         "altruistic": 1.0,
-        "meta_ranking": 0.0012
+        "meta_ranking": 0.001
       },
       "individualist": {
         "selfish": 0.0,
         "individualist": null,
         "prosocial": 0.0,
-        "altruistic": 0.1464,
+        "altruistic": 0.1474,
         "meta_ranking": 0.0
       },
       "prosocial": {
@@ -53,7 +53,7 @@
         "selfish": 0.0,
         "individualist": null,
         "prosocial": 0.0,
-        "altruistic": 0.0002,
+        "altruistic": 0.0004,
         "meta_ranking": 0.0
       },
       "prosocial": {
@@ -86,7 +86,7 @@
         "selfish": null,
         "individualist": 0.0,
         "prosocial": 0.0,
-        "altruistic": 1.0,
+        "altruistic": 0.9998,
         "meta_ranking": 0.0
       },
       "individualist": {
