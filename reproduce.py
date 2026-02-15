@@ -151,6 +151,41 @@ ANALYSES = {
         "module": "simulation.jax.analysis.moral_theories",
         "phase": "Q",
     },
+    "P3": {
+        "name": "연속 공간 PGG (비선형 생산함수)",
+        "module": "simulation.jax.analysis.continuous_pgg",
+        "phase": "P",
+    },
+    "P4": {
+        "name": "네트워크 토폴로지 효과",
+        "module": "simulation.jax.analysis.network_topology",
+        "phase": "P",
+    },
+    "P5": {
+        "name": "Mechanism Design (IC/IR/NE)",
+        "module": "simulation.jax.analysis.mechanism_design",
+        "phase": "P",
+    },
+    "Q2": {
+        "name": "Moran Process 진화 동역학",
+        "module": "simulation.jax.analysis.moran_process",
+        "phase": "Q",
+    },
+    "Q4": {
+        "name": "GNN 에이전트",
+        "module": "simulation.jax.analysis.gnn_agent",
+        "phase": "Q",
+    },
+    "Q5": {
+        "name": "Mechanistic Interpretability",
+        "module": "simulation.jax.analysis.interpretability",
+        "phase": "Q",
+    },
+    "Q6": {
+        "name": "정책 시사점 (AI규제 + 탄소세)",
+        "module": "simulation.jax.analysis.policy_implications",
+        "phase": "Q",
+    },
 }
 
 

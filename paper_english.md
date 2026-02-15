@@ -471,6 +471,62 @@ We tested meta-ranking's resilience against four types of adversarial agents: Fr
 - **Welfare degradation**: Proportional to adversary fraction but never catastrophic (126.7 welfare at 50% Sybil vs 147.7 baseline)
 - **Sustainability preservation**: 100% sustainability maintained across all conditions and adversary fractions
 - **Tolerance threshold**: All adversary types reach 50%+ tolerance, with Random being the least disruptive
+
+### 5.16 Continuous-Space PGG with Nonlinear Production (Stage 7)
+
+We extended meta-ranking to continuous action spaces with Beta-distribution policies and nonlinear production functions G = A·(ΣC)^α (Fig. 57-58).
+
+- **Diminishing returns (α=0.5)**: Meta-ranking maintains positive ATE, demonstrating robustness to production function shape
+- **Increasing returns (α=1.3)**: ATE reaches +840 welfare for prosocial agents, showing that meta-ranking exploits superlinear gains
+- **Policy smoothness**: Beta-distribution policies produce naturally continuous contribution decisions
+
+### 5.17 Network Topology Effects (Stage 7)
+
+We tested meta-ranking across 5 network topologies: Complete, Small-World, Scale-Free, Ring, and Random (Fig. 59-60).
+
+- **Topology invariance**: Cooperation rate reaches 1.000 across all topologies with prosocial agents
+- **Convergence speed**: Complete (5 steps) > Ring (5) > Small-World (10) > Random (15) > Scale-Free (17)
+- **Information propagation**: Denser networks enable faster λ convergence
+
+### 5.18 Mechanism Design Analysis (Stage 7)
+
+We formally analyzed meta-ranking's game-theoretic properties (Fig. 61-62).
+
+- **Incentive Compatibility**: IC satisfied in 42.9% of SVO-resource conditions — meta-ranking provides partial IC, with deviations profitable only for low-SVO agents under resource scarcity
+- **Individual Rationality**: IR satisfied for all resource-above-crisis conditions, confirming agents prefer participation
+- **Nash Equilibrium**: 3 NE candidates found at λ* ≈ 0.00, 0.02, 0.04; the low-contribution equilibrium reflects the classic social dilemma structure
+
+### 5.19 Moran Process Analysis (Stage 7)
+
+We extended replicator dynamics to finite populations using Moran processes (Fig. 63-64).
+
+- **Finite population effects**: Fixation probabilities decrease with population size, confirming stochastic stability
+- **Meta-ranking invasion**: Meta-ranking successfully invades selfish populations at above-neutral rates in small groups
+- **Stochastic stability**: Results consistent with infinite-population ESS prediction of ~12% meta-ranking equilibrium
+
+### 5.20 GNN Agent Architecture (Stage 7)
+
+We implemented Graph Attention-based agents that weight neighbor influence adaptively (Fig. 69-70).
+
+- **Performance parity**: GNN agents achieve comparable performance to simple averaging (ΔCoop = -0.004), suggesting that in our PGG setting, sophisticated neighbor weighting provides marginal benefit
+- **Attention entropy**: Prosocial agents show higher attention entropy (more uniform weighting) than selfish agents
+- **Implication**: Meta-ranking's effectiveness comes from the λ dynamics, not from the neighbor aggregation method
+
+### 5.21 Mechanistic Interpretability (Stage 7)
+
+We decomposed the λ_t decision circuit to identify the dominant factors (Fig. 65-66).
+
+- **Feature attribution**: SVO (θ) accounts for 79.8% of λ_t determination, social influence 20.2%, momentum negligible
+- **Phase space**: All trajectories converge to stable attractors, confirming Theorem 1B's contraction mapping prediction
+- **Decision boundary**: Clear separation between cooperation and defection regimes at SVO ≈ 20° and Resource ≈ 0.2
+
+### 5.22 Policy Implications (Stage 7)
+
+We simulated meta-ranking's impact on AI regulation and carbon tax policies (Fig. 67-68).
+
+- **AI regulation**: Meta-ranking fraction of 50% achieves optimal composite score without requiring high regulation levels
+- **Carbon tax**: Meta-ranking increases emission reduction from 61.3% (0% meta) to 64.3% (50% meta) at the same tax rate
+- **Key insight**: Internal moral mechanisms (meta-ranking) can substitute for external regulatory pressure
  
 ---
  
