@@ -1,13 +1,16 @@
 {
-  "title": "Testing Amartya Sen's Optimal Rationality Theory through Multi-Agent Reinforcement Learning: When Should AI Agents Be Moral?",
+  "title": "Beyond Homo Economicus: Computational Verification of Amartya Sen's Meta-Ranking Theory in Multi-Agent Social Dilemmas",
   "authors": [
     "Yesol Heo"
   ],
   "primary_category": "cs.AI",
   "cross_list": [
     "cs.MA",
-    "cs.GT"
+    "cs.GT",
+    "econ.TH"
   ],
   "license": "CC BY 4.0",
-  "abstract_file": "abstract.txt"
+  "version": "v2",
+  "figures": 74,
+  "modules": 38
 }
