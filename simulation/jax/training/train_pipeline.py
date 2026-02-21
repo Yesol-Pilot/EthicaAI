@@ -15,6 +15,13 @@ try:
     _GENESIS_AVAILABLE = True
 except ImportError:
     _GENESIS_AVAILABLE = False
+
+# v2.0: Inequity Aversion Module (SA-PPO)
+try:
+    from simulation.genesis.reward_shaping import compute_ia_reward, update_ema, transform_rewards
+    _IA_AVAILABLE = True
+except ImportError:
+    _IA_AVAILABLE = False
 from flax.linen.initializers import constant, orthogonal
 from typing import NamedTuple, Dict, Callable
 
@@ -252,6 +259,30 @@ def make_train(config):
                     combined_rewards, r_avg_others, lambda_base,
                     flat_levels, config, mode=genesis_hypo
                 )
+            
+            # === v2.0: Inequity Aversion (SA-PPO) ===
+            # Shape 흐름: meta_ranking_rewards (B, N)
+            # transform_rewards 기대: rewards [N], smoothed_rewards [N] → ([N], [N])
+            # 전략: vmap으로 B 차원에 걸쳐 transform_rewards 적용
+            use_ia = config.get("USE_INEQUITY_AVERSION", False)
+            if use_ia and _IA_AVAILABLE:
+                # EMA 초기화: warmup 방식 (첫 스텝은 현재 보상 = EMA)
+                # TODO v2.1: TrainState에 ema_state를 추가하여 step 간 유지
+                ia_smoothed = meta_ranking_rewards  # (B, N)
+                
+                # vmap transform_rewards over batch dim B
+                # transform_rewards(rewards=[N], smoothed=[N], config, n_agents) → ([N], [N])
+                def _ia_per_env(rewards_n, smoothed_n):
+                    transformed, new_ema = transform_rewards(
+                        rewards_n, smoothed_n, config, N
+                    )
+                    return transformed
+                
+                ia_rewards = jax.vmap(_ia_per_env)(
+                    meta_ranking_rewards, ia_smoothed
+                )  # (B, N)
+                
+                meta_ranking_rewards = ia_rewards
             
             # 최종 보상 선택: 메타랭킹 vs Baseline
             meta_rewards = jnp.where(use_meta, meta_ranking_rewards, baseline_rewards)

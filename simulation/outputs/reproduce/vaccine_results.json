@@ -16,11 +16,11 @@
     "ate_fairness": 0.0
   },
   "prosocial": {
-    "meta_deaths_prevented": 1960610.0316138738,
-    "base_deaths_prevented": 1931134.5105900802,
+    "meta_deaths_prevented": 1980660.21241575,
+    "base_deaths_prevented": 1950901.96698862,
     "meta_fairness": 0.0,
     "base_fairness": 0.0,
-    "ate_deaths": 29475.52102379361,
+    "ate_deaths": 29758.24542712979,
     "ate_fairness": 0.0
   },
   "altruistic": {

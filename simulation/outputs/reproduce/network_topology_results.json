@@ -12,7 +12,7 @@
     "base_coop": 1.0,
     "ate": 0.0,
     "meta_welfare": 148.02611252316652,
-    "convergence": 10.0,
+    "convergence": 5.0,
     "lambda_spread": 8.141635513917814e-17
   },
   "scale_free": {
@@ -20,7 +20,7 @@
     "base_coop": 1.0,
     "ate": 0.0,
     "meta_welfare": 148.02611252316652,
-    "convergence": 17.0,
+    "convergence": 5.0,
     "lambda_spread": 8.141635513917814e-17
   },
   "ring": {
@@ -36,7 +36,7 @@
     "base_coop": 1.0,
     "ate": 0.0,
     "meta_welfare": 148.02611252316652,
-    "convergence": 14.9,
+    "convergence": 5.0,
     "lambda_spread": 8.141635513917814e-17
   }
 }

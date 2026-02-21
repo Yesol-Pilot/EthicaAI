@@ -29,3 +29,8 @@ wsl -d Ubuntu-24.04 -- bash -c "nvidia-smi --query-gpu=name,memory.used,utilizat
 ```bash
 wsl -d Ubuntu-24.04 -- bash /mnt/d/00.test/PAPER/EthicaAI/scripts/test_gpu.sh
 ```
+
+6. Genesis v2.0 진화 루프 (GPU)
+```bash
+wsl -d Ubuntu-24.04 -- bash /mnt/d/00.test/PAPER/EthicaAI/scripts/run_evolution_gpu.sh
+```

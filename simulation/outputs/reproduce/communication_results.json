@@ -8,7 +8,7 @@
     },
     "meta_only": {
       "cooperation": 0.01969605149367657,
-      "cooperation_std": 0.0007154461994410801,
+      "cooperation_std": 0.0007154461994410804,
       "reward": 20.23635261792412,
       "truthfulness": 0.5
     },
@@ -20,7 +20,7 @@
     },
     "baseline": {
       "cooperation": 0.01969605149367657,
-      "cooperation_std": 0.0007154461994410801,
+      "cooperation_std": 0.0007154461994410804,
       "reward": 20.23635261792412,
       "truthfulness": 0.5
     }
@@ -33,20 +33,20 @@
       "truthfulness": 0.9860413750000001
     },
     "meta_only": {
-      "cooperation": 0.9177844097181385,
-      "cooperation_std": 0.0011160901844103847,
+      "cooperation": 0.9177844097181383,
+      "cooperation_std": 0.0011160901844104643,
       "reward": 31.013412916617664,
       "truthfulness": 0.5
     },
     "comm_only": {
-      "cooperation": 0.7809578700914577,
-      "cooperation_std": 0.0012630559279676525,
-      "reward": 29.371494441097497,
+      "cooperation": 0.7809578700914576,
+      "cooperation_std": 0.0012630559279676718,
+      "reward": 29.37149444109749,
       "truthfulness": 0.993329125
     },
     "baseline": {
-      "cooperation": 0.7066809864228821,
-      "cooperation_std": 0.0012157503538841419,
+      "cooperation": 0.706680986422882,
+      "cooperation_std": 0.001215750353884117,
       "reward": 28.480171837074586,
       "truthfulness": 0.5
     }

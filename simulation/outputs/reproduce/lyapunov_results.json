@@ -32,7 +32,7 @@
     },
     "normal": {
       "resource": 0.5,
-      "lambda_star": 0.7071067811865476,
+      "lambda_star": 0.7071067811865475,
       "convergence_rate": 100.0,
       "mean_convergence_steps": 50.08,
       "all_converged": true

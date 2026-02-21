@@ -1,0 +1,1303 @@
+INFO:root:JAX backend: gpu, Devices: [CudaDevice(id=0)]
+🖥️ JAX Platform: gpu | Devices: [CudaDevice(id=0)]
+============================================================
+🏛️  EthicaAI Genesis Lab — Autonomous R&D System
+   '성공하면 더 깊이, 실패하면 대안을'
+============================================================
+⚠️ google.generativeai 미설치. MOCK MODE로 진행합니다.
+
+────────────────────────────────────────────────────────────
+📋 연구 과제: RQ-007
+   질문: 경쟁적 보상 구조로 시작하여 수정된 협력적 보상 구조(REWARD_APPLE, COST_BEAM)로 전환하는 '경쟁 후 협력' 커리큘럼에서 에이전트를 훈련하면 협력률이 향상되는가?
+   목표: cooperation_rate > 0.5
+   유형: pivot
+────────────────────────────────────────────────────────────
+
+🔄 --- [RQ-007] Generation 1 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 4.95,
+  "GENESIS_ALPHA": 2.1,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "IA_ALPHA": 1.0,
+  "IA_BETA": 0.571,
+  "USE_INEQUITY_AVERSION": true,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=4.95, Alpha=2.1, Mode=adaptive_beta, IA=ON
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 2.1,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": true,
+  "IA_ALPHA": 1.0,
+  "IA_BETA": 0.571,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 4.95,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 480.5s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 2 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: poke
+  > Poke: IA_ALPHA → 6.00
+  > Level 1 (Poke): IA 파라미터 조정
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 3.53,
+  "GENESIS_ALPHA": 0.47,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "IA_ALPHA": 1.56,
+  "IA_BETA": 0.32,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=3.53, Alpha=0.47, Mode=institutional, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 0.47,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 1.56,
+  "IA_BETA": 0.32,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 3.53,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 131.1s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 3 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 8.19,
+  "GENESIS_ALPHA": 2.18,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "IA_ALPHA": 2.9,
+  "IA_BETA": 0.221,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=8.19, Alpha=2.18, Mode=inverse_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 2.18,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 2.9,
+  "IA_BETA": 0.221,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 8.19,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 147.4s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 4 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: poke
+  > Poke: IA_ALPHA → 6.00
+  > Level 1 (Poke): IA 파라미터 조정
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 7.74,
+  "GENESIS_ALPHA": 1.3,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "IA_ALPHA": 4.79,
+  "IA_BETA": 0.422,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=7.74, Alpha=1.3, Mode=institutional, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 1.3,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 4.79,
+  "IA_BETA": 0.422,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 7.74,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 147.8s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 5 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: shock
+  > Shock: Mode inverse_beta → adaptive_beta, Beta x5
+  > Level 2 (Shock): 로직 모드 전환
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 8.65,
+  "GENESIS_ALPHA": 2.74,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "IA_ALPHA": 4.74,
+  "IA_BETA": 0.013,
+  "USE_INEQUITY_AVERSION": true,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=8.65, Alpha=2.74, Mode=inverse_beta, IA=ON
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 2.74,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": true,
+  "IA_ALPHA": 4.74,
+  "IA_BETA": 0.013,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 8.65,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 129.9s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 6 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 6.26,
+  "GENESIS_ALPHA": 2.05,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "IA_ALPHA": 3.05,
+  "IA_BETA": 0.9,
+  "USE_INEQUITY_AVERSION": true,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=6.26, Alpha=2.05, Mode=institutional, IA=ON
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 2.05,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": true,
+  "IA_ALPHA": 3.05,
+  "IA_BETA": 0.9,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 6.26,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 125.5s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 7 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: shock
+  > Shock: Mode inverse_beta → adaptive_beta, Beta x5
+  > Level 2 (Shock): 로직 모드 전환
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 8.39,
+  "GENESIS_ALPHA": 3.84,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "IA_ALPHA": 1.94,
+  "IA_BETA": 0.362,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=8.39, Alpha=3.84, Mode=adaptive_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 3.84,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 1.94,
+  "IA_BETA": 0.362,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 8.39,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 125.3s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 8 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 2.87,
+  "GENESIS_ALPHA": 0.34,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "IA_ALPHA": 4.73,
+  "IA_BETA": 0.178,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=2.87, Alpha=0.34, Mode=adaptive_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 0.34,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 4.73,
+  "IA_BETA": 0.178,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 2.87,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 125.3s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 9 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: reset
+  > History wiped. Theorist brainwashed.
+  > Level 3 (Reset): 히스토리 초기화
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 6.23,
+  "GENESIS_ALPHA": 3.01,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "IA_ALPHA": 7.28,
+  "IA_BETA": 0.593,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=6.23, Alpha=3.01, Mode=institutional, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 3.01,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 7.28,
+  "IA_BETA": 0.593,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 6.23,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 125.6s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 10 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: poke
+  > Poke: IA_ALPHA → 6.00
+  > Level 1 (Poke): IA 파라미터 조정
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 5.41,
+  "GENESIS_ALPHA": 1.75,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "IA_ALPHA": 7.37,
+  "IA_BETA": 0.188,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=5.41, Alpha=1.75, Mode=adaptive_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 1.75,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 7.37,
+  "IA_BETA": 0.188,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 5.41,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 125.9s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 11 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: poke
+  > Poke: IA_ALPHA → 6.00
+  > Level 1 (Poke): IA 파라미터 조정
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 7.56,
+  "GENESIS_ALPHA": 1.64,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "IA_ALPHA": 3.01,
+  "IA_BETA": 0.11,
+  "USE_INEQUITY_AVERSION": true,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=7.56, Alpha=1.64, Mode=adaptive_beta, IA=ON
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 1.64,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": true,
+  "IA_ALPHA": 3.01,
+  "IA_BETA": 0.11,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 7.56,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 129.5s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 12 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: shock
+  > Shock: Mode inverse_beta → adaptive_beta, Beta x5
+  > Level 2 (Shock): 로직 모드 전환
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 1.64,
+  "GENESIS_ALPHA": 3.88,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "IA_ALPHA": 4.2,
+  "IA_BETA": 0.543,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=1.64, Alpha=3.88, Mode=inverse_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 3.88,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 4.2,
+  "IA_BETA": 0.543,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 1.64,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 127.5s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 13 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 7.22,
+  "GENESIS_ALPHA": 2.01,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "IA_ALPHA": 9.35,
+  "IA_BETA": 0.709,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=7.22, Alpha=2.01, Mode=inverse_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 2.01,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 9.35,
+  "IA_BETA": 0.709,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 7.22,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 280.4s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 14 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 5.93,
+  "GENESIS_ALPHA": 4.77,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "IA_ALPHA": 4.53,
+  "IA_BETA": 0.368,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=5.93, Alpha=4.77, Mode=adaptive_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 4.77,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 4.53,
+  "IA_BETA": 0.368,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 5.93,
+  "GENESIS_LOGIC_MODE": "adaptive_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 529.5s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 15 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 5.11,
+  "GENESIS_ALPHA": 4.19,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "IA_ALPHA": 7.09,
+  "IA_BETA": 0.241,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=5.11, Alpha=4.19, Mode=institutional, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 4.19,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 7.09,
+  "IA_BETA": 0.241,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 5.11,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 513.0s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 16 ---
+🚨 Stagnation Detected (Var=0.000045 < 0.0001)
+🚨 Coordinator Intervening: shock
+  > Shock: Mode inverse_beta → adaptive_beta, Beta x5
+  > Level 2 (Shock): 로직 모드 전환
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 8.95,
+  "GENESIS_ALPHA": 2.53,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "IA_ALPHA": 7.63,
+  "IA_BETA": 0.539,
+  "USE_INEQUITY_AVERSION": false,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=8.95, Alpha=2.53, Mode=inverse_beta, IA=OFF
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 2.53,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": false,
+  "IA_ALPHA": 7.63,
+  "IA_BETA": 0.539,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 8.95,
+  "GENESIS_LOGIC_MODE": "inverse_beta",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1226±0.0094
+💾 Results saved to experiments/evolution/current/result.json
+  > Simulation finished in 549.9s
+🧐 Critic is analyzing...
+🧐 Critic: Report generated. Success=False | S=0.9991 | CR=0.1170±0.0153
+❌ [RQ-007] Coop=0.1170 (목표: 0.5). 계속...
+
+🔄 --- [RQ-007] Generation 17 ---
+🧠 Theorist is thinking...
+🧠 Theorist proposed: {
+  "GENESIS_BETA": 6.39,
+  "GENESIS_ALPHA": 3.45,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "IA_ALPHA": 6.92,
+  "IA_BETA": 0.699,
+  "USE_INEQUITY_AVERSION": true,
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params)."
+}
+  > Proposed: Beta=6.39, Alpha=3.45, Mode=institutional, IA=ON
+🛠️ Engineer is running simulation...
+🛠️ Engineer: Running simulation with config: {
+  "ENV_NAME": "cleanup",
+  "NUM_AGENTS": 20,
+  "ENV_HEIGHT": 36,
+  "ENV_WIDTH": 25,
+  "MAX_STEPS": 500,
+  "NUM_ENVS": 16,
+  "NUM_UPDATES": 300,
+  "ROLLOUT_LEN": 128,
+  "BATCH_SIZE": 2048,
+  "LR": 0.0003,
+  "HIDDEN_DIM": 128,
+  "GAMMA": 0.99,
+  "GAE_LAMBDA": 0.95,
+  "CLIP_EPS": 0.2,
+  "ENTROPY_COEFF": 0.05,
+  "VF_COEFF": 0.5,
+  "MAX_GRAD_NORM": 0.5,
+  "HRL_NUM_NEEDS": 2,
+  "HRL_NUM_TASKS": 2,
+  "HRL_ALPHA": 1.0,
+  "HRL_THRESH_INCREASE": 0.005,
+  "HRL_THRESH_DECREASE": 0.05,
+  "HRL_INTAKE_VAL": 0.2,
+  "REWARD_APPLE": 10.0,
+  "COST_BEAM": -1.0,
+  "META_BETA": 0.1,
+  "META_SURVIVAL_THRESHOLD": -5.0,
+  "META_WEALTH_BOOST": 5.0,
+  "META_LAMBDA_EMA": 0.9,
+  "USE_META_RANKING": true,
+  "META_USE_DYNAMIC_LAMBDA": true,
+  "GENESIS_MODE": false,
+  "GENESIS_BETA_BASE": 10.0,
+  "GENESIS_GAMMA": 2.0,
+  "GENESIS_ALPHA": 3.45,
+  "DASHBOARD_PORT": 4011,
+  "USE_INEQUITY_AVERSION": true,
+  "IA_ALPHA": 6.92,
+  "IA_BETA": 0.699,
+  "IA_EMA_LAMBDA": 0.95,
+  "SI_WEIGHT": 0.1,
+  "MEDIATOR_K": 10,
+  "MEDIATOR_LAMBDA_IC": 1.0,
+  "MEDIATOR_LAMBDA_E": 0.5,
+  "GENESIS_BETA": 6.39,
+  "GENESIS_LOGIC_MODE": "institutional",
+  "rationale": "Mock Theorist: Random exploration (Genesis + IA params).",
+  "rationale_kr": ""
+}
+  > 🚀 GPU Mode: NUM_ENVS=64, BATCH=512, UPDATES=300
+  > Compiling JAX graph...
+  > Starting loops (JIT ENABLED, GPU)...
+  > Testing Prosocial... [Seed=42] [Seed=123] [Seed=7] Done. Coop=0.1170±0.0153
+  > Testing Individualist... [Seed=42]

@@ -39,6 +39,9 @@ def apply_genesis_reward(combined_rewards, r_avg_others, lambda_base,
     reward_gap = jnp.abs(r_avg_others - combined_rewards)  # (B, N)
     instability = reward_gap.mean(axis=-1, keepdims=True)   # (B, 1)
 
+    # Common: Wealth Calculation
+    wealth = flat_levels.mean(axis=-1).reshape((B, N))  # (B, N)
+
     # --- Hypothesis #001: Adaptive Beta (감쇠형) ---
     if mode == "adaptive_beta":
         beta_base = config.get("GENESIS_BETA_BASE", 10.0)
@@ -49,29 +52,48 @@ def apply_genesis_reward(combined_rewards, r_avg_others, lambda_base,
         adaptive_scale = jnp.exp(-gamma * instability)
         lambda_dynamic = lambda_base * adaptive_scale
 
-    # --- Hypothesis #002: Inverse Adaptive Beta (증폭형) ---
+    # --- Hypothesis #002: Inverse Adaptive Beta (증폭형 - Forced Cooperation) ---
     elif mode == "inverse_beta":
         beta_base = config.get("GENESIS_BETA_BASE", 10.0)
         alpha = config.get("GENESIS_ALPHA", 5.0)
+        
+        # Instability가 높을수록 Beta가 급격히 커짐
         beta_t = beta_base * (1.0 + alpha * instability)
 
-        # beta_t를 lambda sigmoid에 적용 (핵심: 실제로 사용!)
-        lambda_dynamic = jnp.clip(
-            lambda_base * jnp.tanh(beta_t * reward_gap.mean(axis=-1, keepdims=True)),
-            0.0, 1.0
-        )
+        # 핵심: 위기 상황(High Beta)에서는 본성(lambda_base)을 무시하고 강제 협력(1.0) 유도
+        # Lambda = Base + (1 - Base) * tanh(Beta * Instability)
+        forced_signal = jnp.tanh(beta_t * instability)
+        lambda_dynamic = lambda_base + (1.0 - lambda_base) * forced_signal
 
-    # --- Hypothesis #003: Institutional Punishment (미래 확장) ---
+    # --- Hypothesis #003: Institutional Punishment (Real-World Sanctions) ---
     elif mode == "institutional":
-        beta_t = jnp.ones((B, 1)) * 10.0
-        lambda_dynamic = lambda_base * jnp.ones((B, N))
-        # TODO: 비협력자 탐지 + 처벌 보상 체계 구현
+        # Mechanism: Sanction on Unfair Gain (부당 이득 환수)
+        # "법을 어기면(이기적으로 이득을 취하면) 처벌받는다"
+        # GENESIS_BETA = Penalty Rate (처벌 강도)
+        
+        penalty_rate = config.get("GENESIS_BETA", 1.0)
+        
+        # Selfish Gain: 나만 잘나서 얻은 이득 (Defection Advantage)
+        # (My Reward - Avg Others)가 양수이면 이기적인 상태
+        selfish_gain = jnp.maximum(0.0, combined_rewards - r_avg_others)
+        
+        # Sanction: 부당 이득에 비례한 벌금
+        # 부자일수록(Wealthy) 더 강하게 처벌? (User preference: 'Real society')
+        # Here we apply strict penalty on the ACT of selfishness.
+        sanction = penalty_rate * selfish_gain
+        
+        # Lambda is NOT forced. Agents must LEARN to avoid Sanction.
+        lambda_dynamic = lambda_base
+        beta_t = jnp.ones((B, 1)) * penalty_rate
 
     else:
-        raise ValueError(f"Unknown genesis mode: {mode}")
+        # Fallback
+        beta_t = jnp.zeros((B, 1))
+        lambda_dynamic = lambda_base
+        sanction = 0.0
 
-    # Wealth-based Dynamic Lambda (기존 로직 유지)
-    wealth = flat_levels.mean(axis=-1).reshape((B, N))
+    # Wealth-based Dynamic Lambda (기존 로직 유지 - Secondary Effect)
+    # 생존 본능은 그대로 둠 (배고프면 이기적이 됨)
     meta_survival = config.get("META_SURVIVAL_THRESHOLD", -5.0)
     meta_boost = config.get("META_WEALTH_BOOST", 5.0)
 
@@ -90,8 +112,15 @@ def apply_genesis_reward(combined_rewards, r_avg_others, lambda_base,
     psi = meta_beta * reward_gap
 
     # Final Reward Mixing
-    meta_ranking_rewards = (1 - lambda_dynamic) * combined_rewards + \
-                           lambda_dynamic * (r_avg_others - psi)
+    # Reward = (Intrinsic Preference) - (Institutional Sanction)
+    base_reward = (1 - lambda_dynamic) * combined_rewards + \
+                  lambda_dynamic * (r_avg_others - psi)
+    
+    # Apply Sanction only in Institutional Mode
+    if mode == "institutional":
+        meta_ranking_rewards = base_reward - sanction
+    else:
+        meta_ranking_rewards = base_reward
 
     debug_info = {
         "beta_t": beta_t,

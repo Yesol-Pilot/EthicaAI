@@ -1,0 +1,62 @@
+00:51:07 [INFO] ============================================================
+00:51:07 [INFO] EthicaAI — CPU/메모리 집약적 분석 시작
+00:51:07 [INFO] 시작 시각: 2026-02-16 00:51:07
+00:51:07 [INFO] CPU 코어: 16
+00:51:07 [INFO] JAX 플랫폼: CPU (GPU는 Full Sweep에 사용 중)
+00:51:07 [INFO] 출력 디렉토리: /mnt/d/00.test/PAPER/EthicaAI/experiments/cpu_analysis_results
+00:51:07 [INFO] ============================================================
+00:51:07 [INFO] 
+========================================
+00:51:07 [INFO] 작업: bootstrap_ci
+00:51:07 [INFO] ========================================
+00:51:07 [INFO] 🎲 [BONUS] 기존 데이터 Bootstrap CI 분석 시작...
+00:51:07 [WARNING]   데이터 부족: 0개 포인트
+00:51:07 [INFO] 💾 저장: /mnt/d/00.test/PAPER/EthicaAI/experiments/cpu_analysis_results/bootstrap_ci.json
+00:51:07 [INFO] 
+========================================
+00:51:07 [INFO] 작업: lmm_causal_forest
+00:51:07 [INFO] ========================================
+00:51:07 [INFO] 🔬 [1/5] LMM + Causal Forest 분석 시작...
+00:51:16 [INFO]   패널 데이터 생성 완료: 8000 행
+00:51:16 [INFO]   LMM 분석 완료
+00:51:16 [INFO]   Causal Forest 완료
+00:51:17 [INFO]   시각화 완료
+00:51:17 [INFO]   ✅ LMM/Causal Forest 완료 (10초)
+00:51:17 [INFO] 💾 저장: /mnt/d/00.test/PAPER/EthicaAI/experiments/cpu_analysis_results/lmm_causal_forest.json
+00:51:17 [INFO] 
+========================================
+00:51:17 [INFO] 작업: sensitivity
+00:51:17 [INFO] ========================================
+00:51:17 [INFO] 📊 [2/5] 민감도 분석 시작...
+00:51:17 [ERROR]   ❌ 민감도 분석 실패: cannot import name 'main' from 'simulation.jax.analysis.sensitivity_analysis' (/mnt/d/00.test/PAPER/EthicaAI/simulation/jax/analysis/sensitivity_analysis.py) (0초)
+00:51:17 [INFO] 💾 저장: /mnt/d/00.test/PAPER/EthicaAI/experiments/cpu_analysis_results/sensitivity.json
+00:51:17 [INFO] 
+========================================
+00:51:17 [INFO] 작업: lyapunov
+00:51:17 [INFO] ========================================
+00:51:17 [INFO] 🔢 [3/5] 리아푸노프 분석 시작...
+00:51:17 [ERROR]   ❌ 리아푸노프 분석 실패: cannot import name 'main' from 'simulation.jax.analysis.lyapunov_analysis' (/mnt/d/00.test/PAPER/EthicaAI/simulation/jax/analysis/lyapunov_analysis.py) (0초)
+00:51:17 [INFO] 💾 저장: /mnt/d/00.test/PAPER/EthicaAI/experiments/cpu_analysis_results/lyapunov.json
+00:51:17 [INFO] 
+========================================
+00:51:17 [INFO] 작업: convergence
+00:51:17 [INFO] ========================================
+00:51:17 [INFO] 📐 [4/5] 수렴 증명 시뮬레이션 시작...
+00:51:17 [ERROR]   ❌ 수렴 증명 실패: cannot import name 'main' from 'simulation.jax.analysis.convergence_proof' (/mnt/d/00.test/PAPER/EthicaAI/simulation/jax/analysis/convergence_proof.py) (0초)
+00:51:17 [INFO] 💾 저장: /mnt/d/00.test/PAPER/EthicaAI/experiments/cpu_analysis_results/convergence.json
+00:51:17 [INFO] 
+========================================
+00:51:17 [INFO] 작업: scale_comparison
+00:51:17 [INFO] ========================================
+00:51:17 [INFO] 📈 [5/5] 스케일 비교 분석 시작...
+00:51:17 [ERROR]   ❌ 스케일 비교 실패: cannot import name 'main' from 'simulation.jax.analysis.scale_comparison' (/mnt/d/00.test/PAPER/EthicaAI/simulation/jax/analysis/scale_comparison.py) (0초)
+00:51:17 [INFO] 💾 저장: /mnt/d/00.test/PAPER/EthicaAI/experiments/cpu_analysis_results/scale_comparison.json
+00:51:17 [INFO] 
+========================================
+00:51:17 [INFO] 작업: paper_figures
+00:51:17 [INFO] ========================================
+00:51:17 [INFO] 🖼️ [BONUS] 논문 Figure 일괄 생성 시작...
+[P2] Fig 51 저장: simulation/outputs/reproduce/fig51_lmm_results.png
+[P2] Fig 52 저장: simulation/outputs/reproduce/fig52_causal_forest_hte.png
+Usage: python paper_figures.py <run_dir>
+Example: python paper_figures.py simulation/outputs/run_medium_1770985029

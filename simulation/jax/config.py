@@ -31,6 +31,16 @@ _HRL_DEFAULTS = {
     "GENESIS_ALPHA": 5.0,             # Genesis: 증폭 계수
     # Infrastructure
     "DASHBOARD_PORT": 4011,            # Local port allocation (4011~4020)
+    # v2.0: Inequity Aversion (SA-PPO) 파라미터
+    "USE_INEQUITY_AVERSION": True,     # SA-PPO 활성화
+    "IA_ALPHA": 5.0,                   # 질투 계수 (Envy) — Fehr & Schmidt (1999)
+    "IA_BETA": 0.05,                   # 죄책감 계수 (Guilt)
+    "IA_EMA_LAMBDA": 0.95,             # 보상 평활화 계수
+    "SI_WEIGHT": 0.1,                  # 사회적 영향력 보상 가중치
+    # v2.0: Mediator 파라미터
+    "MEDIATOR_K": 10,                  # 위임 결정 주기
+    "MEDIATOR_LAMBDA_IC": 1.0,         # IC 제약 강도
+    "MEDIATOR_LAMBDA_E": 0.5,          # E 제약 강도
 }
 
 # --- Small Scale (Development & Debugging) ---
